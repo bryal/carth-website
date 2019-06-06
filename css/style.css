@@ -143,7 +143,7 @@ a:hover {
 
 pre.src {
     font-size: 0.9em;
-    overflow-x: scroll !important;
+    overflow-x: auto !important;
 }
 
 code {
