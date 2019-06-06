@@ -1,0 +1,188 @@
+:root {
+    /* Variable definitions */
+    --toc-width: 320px;
+    --common-padding: 18px;
+    --main-width: 720px;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font: 16px "Fira Sans", "Dejavu Sans", sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    color: rgb(50, 50, 50);
+    background-color: rgb(254, 253, 252);
+}
+
+header {
+    min-width: 100%;
+    width: 100%;
+}
+
+header h1.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.8em;
+    margin-bottom: 0.6em;
+}
+
+#content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#table-of-contents {
+    font-size: 0.83em;
+    min-width: var(--toc-width);
+    width: var(--toc-width);
+    padding: var(--common-padding);
+}
+
+#table-of-contents > h2, main > div:first-child > h2 {
+    margin-top: 0px;
+}
+
+#table-of-contents ul {
+    padding-left: 16px;
+}
+
+.tag {
+    display: inline-block;
+}
+
+#table-of-contents li .todo, #table-of-contents li .tag {
+    font-size: 0.8em;
+}
+
+main {
+    max-width: var(--main-width);
+    /*min-width: 360px;*/
+    width: calc(100% - var(--toc-width) - 4*var(--common-padding));
+    padding: var(--common-padding);
+}
+
+main h2 .todo, main h2 .tag {
+    font-size: 0.6em;
+}
+
+#sitenav {
+    padding: 4px;
+    background-color: rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#sitenav a:visited {
+    color: rgba(20, 70, 240, 0.85);
+}
+
+h2 {
+    margin-top: 2.2em;
+}
+
+#right-padding {
+    max-width: calc(var(--toc-width) + 2*var(--common-padding));
+    width: calc(100% - var(--toc-width) - var(--main-width) - 4*var(--common-padding));
+}
+
+img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+figure {
+    margin: 1.5em 0;
+}
+
+figcaption {
+    text-align: center;
+}
+
+p {
+    padding: 0px var(--common-padding);
+    text-align: justify;
+}
+
+a {
+    color: rgba(20, 70, 240, 0.85);
+    text-decoration: none;
+}
+
+a:visited {
+    color: rgba(150, 40, 210, 0.85);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.math-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    min-height: calc(2.7em + 2em);
+    margin-top: -0.8em;
+    margin-bottom: -0.8em;
+}
+
+.mathjax-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 2.7em;
+}
+
+.mathjax-wrapper > .MathJax_Display {
+    margin: 0;
+}
+
+pre.src {
+    font-size: 0.9em;
+    overflow-x: scroll !important;
+}
+
+code {
+    background-color: rgba(40, 160, 160, 0.1);
+    padding: 0 0.15em;
+}
+
+footer {
+    flex-grow: 1;
+    padding: 14px;
+    padding-top: 18px;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+footer p {
+    text-align: left;
+}
+
+@media screen and (max-width: 960px) {
+    body {
+	font-size: 14px;
+	width: 100%;
+    }
+
+    #table-of-contents {
+	padding: 12px;
+	min-width: 0;
+	width: 100%;
+    }
+
+    main {
+	padding: 12px;
+	max-width: 100%;
+	min-width: 0;
+	width: 100%;
+    }
+
+    #right-padding {
+	width: 0;
+    }
+}

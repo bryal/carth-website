@@ -1,0 +1,65 @@
+#+TITLE: The Carth Programming Language
+#+AUTHOR: JoJo
+#+EMAIL: jo@jo.zone
+#+LANGUAGE: en
+#+OPTIONS: h:4 tex:t f:t
+#+OPTIONS: prop:("VERSION")
+#+HTML_DOCTYPE: html5
+#+HTML_HEAD: <link href="/css/style.css" rel="stylesheet" type="text/css" />
+#+HTML_HEAD: <link href="/css/index.css" rel="stylesheet" type="text/css" />
+#+HTML_POSTAMBLE: <p class="author">Author: %a (%e)</p><p class="date">Created: %T</p><p class="creator">%c</p>
+
+
+# #+HTML: <div class="outline-2" id="meta">
+# | *Author* | {{{author}}} ({{{email}}})    |
+# | *Date*   | {{{time(%Y-%m-%d %H:%M:%S)}}} |
+# #+HTML: </div>
+
+#+HTML: <main><nav id="sitenav"> <a href="/">Home</a> <a href="/pages/reference.html">Reference</a> <a href="https://gitlab.com/JoJoZ/carth">Carth repo</a> <a href="https://gitlab.com/JoJoZ/carth-website">Site repo</a> </nav>
+
+#+HTML_AFTER_CONTENTS: </main><div id="right-padding"></div>
+
+
+Purely functional programming with lisp-syntax. Less infix, more parens!
+
+* Why Carth?
+  - Scheme-inspired syntax and feel
+  - Static, Hindley-Milner typechecking à la ML
+  - Currying
+  - LLVM-based backend
+  - [[file:pages/reference.org::#Literate-Carth][Native support for literate programming in Org-mode]]
+
+* Example
+  Just to give you a quick taste. More examples can be found in the
+  [[https://gitlab.com/JoJoZ/carth/tree/master/examples/][~examples~ directory in the repository]].
+
+  #+BEGIN_SRC carth
+  (define (main_ )
+    (printInt 1337))
+  #+END_SRC
+
+* Documentation
+  - [[./pages/reference.org][The Carth Reference]]
+
+* Development
+  All development on the Carth project happens openly on [[https://gitlab.com/JoJoZ/carth][GitLab in
+  ~JoJoZ/carth~]]. The source for this website is also on [[https://gitlab.com/JoJoZ/carth-website][GitLab in
+  ~JoJoZ/carth-website~]].
+
+* License
+  Both the Carth project and this website itself are licensed under
+  the AGPLv3.
+
+  Copyright (C) 2019  Johan Johansson
+
+  This program is free software: you can redistribute it and/or
+  modify it under the terms of the GNU Affero General Public License
+  as published by the Free Software Foundation, either version 3 of
+  the License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Affero General Public License for more details.
+
+  See [[./LICENSE][LICENSE]]
