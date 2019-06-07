@@ -25,6 +25,73 @@ complete, but it may not be.
 * TODO Items
 
 ** TODO Global variable definitions
+   Global variables are defined at the top-level by using either one
+   of the two implicitly typed /variable ~define~/ and /function
+   ~define~/ special forms, or their explicitly typed ~define:~
+   counterparts.
+
+   Global variables are practically equivalent to local variables, in
+   all respects but scope.
+
+*** Syntax
+    #+BEGIN_SRC bnf
+    definition
+        = "(", ( implicitly typed definition | explicitly typed definition ), ")" ;
+
+    implicitly typed definition
+        = variable definition | function definition ;
+    explicitly typed definition
+        = typed variable definition | typed function definition ;
+
+    variable definition
+        = "define", name, expression ;
+    function definition
+        = "define", "(", name, parameter, { parameter }, ")", expression ;
+
+    typed variable definition
+        = "define:", name, definition type, expression ;
+    typed function definition
+        = "define:"
+        , "(", name, parameter, { parameter }, ")"
+        , definition type, expression ;
+
+    name = small identifier ;
+    parameter = small identifier ;
+
+    definition type = polytype | monotype ;
+    polytype = "(", "forall", { monotype }, monotype, ")" ;
+    #+END_SRC
+
+*** Examples
+    #+BEGIN_SRC carth
+    ;; First form. Implicitly typed variable definition.
+    ;;
+    ;; Bind the global variable ~id~ to the identity function. No explicit type
+    ;; signature is given - it is statically inferred by the typechecker to be the
+    ;; equivalent of ~(forall [a] (Fun a a))~
+    (define id-iv
+      (fun x x))
+
+    ;; Second form. Implicitly typed function definition.
+    ;;
+    ;; Again, the identity function, equivalent to the defition above, but using the
+    ;; more convenient function definition syntax.
+    (define (id-if x)
+      x)
+
+    ;; Third form. Explicitly typed variable definition.
+    ;;
+    ;; Explicit type signature is given. The type must properly be a polytype (aka
+    ;; /type scheme/) to be valid and instantiable for any monotype.
+    (define: id-ev
+        (forall [a] (Fun a a))
+      (fun x x))
+
+    ;; Fourth form. Explicitly typed function definition.
+    (define: (id-ef x)
+        (forall [a] (Fun a a))
+      x)
+    #+END_SRC
 
 ** TODO Type definitions
 
