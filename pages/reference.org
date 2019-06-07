@@ -66,7 +66,7 @@ complete, but it may not be.
     #+BEGIN_SRC carth
     ;; First form. Implicitly typed variable definition.
     ;;
-    ;; Bind the global variable ~id~ to the identity function. No explicit type
+    ;; Bind the global variable ~id-iv~ to the identity function. No explicit type
     ;; signature is given - it is statically inferred by the typechecker to be the
     ;; equivalent of ~(forall [a] (Fun a a))~
     (define id-iv
