@@ -59,7 +59,7 @@ complete, but it may not be.
     parameter = small identifier ;
 
     definition type = polytype | monotype ;
-    polytype = "(", "forall", "[", { monotype }, "]", monotype, ")" ;
+    polytype = "(", "forall", "(", { monotype }, ")", monotype, ")" ;
     #+END_SRC
 
 *** Examples
