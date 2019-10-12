@@ -55,7 +55,7 @@ header h1.title {
     display: inline-block;
 }
 
-#table-of-contents li .todo, #table-of-contents li .tag {
+.todo, .tag {
     font-size: 0.8em;
 }
 
@@ -64,10 +64,6 @@ main {
     /*min-width: 360px;*/
     width: calc(100% - var(--toc-width) - 4*var(--common-padding));
     padding: var(--common-padding);
-}
-
-main h2 .todo, main h2 .tag {
-    font-size: 0.6em;
 }
 
 #sitenav {
@@ -164,19 +160,23 @@ footer p {
 }
 
 @media screen and (max-width: 960px) {
+    :root {
+	--common-padding: 12px;
+    }
+
     body {
-	font-size: 14px;
+	font-size: 13px;
 	width: 100%;
     }
 
     #table-of-contents {
-	padding: 12px;
+	padding: 8px;
 	min-width: 0;
 	width: 100%;
     }
 
     main {
-	padding: 12px;
+	padding: 10px;
 	max-width: 100%;
 	min-width: 0;
 	width: 100%;
