@@ -139,10 +139,52 @@ complete, but it may not be.
     #+END_SRC
 
 *** Example
-    #+BEGIN_SRC scheme
+    #+BEGIN_SRC carth
     (: x Int)
     #+END_SRC
 
+** Match
+   Pattern matching. Used to deconstruct algebraic datatypes.
+
+*** Syntax
+    #+BEGIN_SRC bnf
+    match = "(", "match", expression, case, { case } , ")" ;
+    case = "(", pattern, expression, ")" ;
+    pattern = constructor | pattern construction | variable ;
+    pattern construction = "(", constructor, pattern, { pattern }, ")" ;
+    #+END_SRC
+
+*** Example
+    #+BEGIN_SRC carth
+    (match p
+      [(Pair a _) a])
+    #+END_SRC
+
+** FunMatch
+   Syntax sugar for a ~match~ in a lambda. Equivalent to ~\case~
+   (LambdaCase) in Haskell. ~(fun-match cases...)~ translates to ~(fun
+   VAR (match VAR cases...))~ where ~VAR~ is a uniquely internally
+   generated variable that cannot be expressed by the user (which
+   means it won't shadow any other binding).
+
+*** Syntax
+    #+BEGIN_SRC bnf
+    fun-match = "(", "fun-match", case, { case } , ")" ;
+    #+END_SRC
+
+*** Example
+    #+BEGIN_SRC carth
+    ;; Two versions of `fst`, which returns the first value of a pair
+    ;;
+    ;; using normal `match`
+    (define (fst-nofun p)
+      (match p
+        [(Pair a _) a]))
+    ;; and using `fun-match`
+    (define fst-fun
+      (fun-match
+        [(Pair a _) a]))
+    #+END_SRC
 * TODO Patterns
 
 * TODO Type system
