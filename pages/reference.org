@@ -127,6 +127,17 @@ complete, but it may not be.
 
 *** Bool
     ~True~ or ~False~
+
+** TODO Variable
+
+** TODO Function application
+
+** TODO Conditional
+
+** TODO Anonymous-function / Lambda expression / Closure
+
+** TODO Let
+
 ** Type ascription
    Type ascriptions are primarily used to:
    - increase readability when the type of an expression is not obvious;
@@ -185,6 +196,9 @@ complete, but it may not be.
       (fun-match
         [(Pair a _) a]))
     #+END_SRC
+
+** TODO Constructor
+
 * TODO Patterns
 
 * TODO Type system
