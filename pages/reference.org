@@ -6,7 +6,6 @@ language. It is updated on a best-effort basis. It should be valid and
 complete, but it may not be.
 
 * TODO Introduction
-
 ** TODO How to use this document
 
 ** TODO Contributing
@@ -23,8 +22,7 @@ complete, but it may not be.
 * TODO Packages, modules, and source files
 
 * TODO Items
-
-** TODO Global variable definitions
+** Global variable definitions
    Global variables are defined at the top-level by using either one
    of the two implicitly typed /variable ~define~/ and /function
    ~define~/ special forms, or their explicitly typed ~define:~
@@ -39,27 +37,26 @@ complete, but it may not be.
         = "(", ( implicitly typed definition | explicitly typed definition ), ")" ;
 
     implicitly typed definition
-        = variable definition | function definition ;
+        = "define", ( variable definition | function definition );
     explicitly typed definition
-        = typed variable definition | typed function definition ;
+        = "define:", ( typed variable definition | typed function definition );
 
     variable definition
-        = "define", name, expression ;
+        = name, expression ;
     function definition
-        = "define", "(", name, parameter, { parameter }, ")", expression ;
+        = "(", name, parameter, { parameter }, ")", expression ;
 
     typed variable definition
-        = "define:", name, definition type, expression ;
+        = name, definition type, expression ;
     typed function definition
-        = "define:"
-        , "(", name, parameter, { parameter }, ")"
-        , definition type, expression ;
+        = "(", name, parameter, { parameter }, ")", definition type, expression ;
 
     name = small identifier ;
     parameter = small identifier ;
 
     definition type = polytype | monotype ;
-    polytype = "(", "forall", "(", { monotype }, ")", monotype, ")" ;
+    polytype = "(", "forall", "(", type variable, { type variable }, ")"
+                            , monotype, ")" ;
     #+END_SRC
 
 *** Examples
@@ -93,41 +90,57 @@ complete, but it may not be.
       x)
     #+END_SRC
 
-** TODO Type definitions
+** Type definitions
+   Algebraic datatypes (aka tagged/discriminated unions) are defined
+   at the top-level with the ~type~ special form. Roughly equivalent
+   to ~data~ in Haskell and ~enum~ in Rust.
+*** Syntax
+    :PROPERTIES:
+    :CUSTOM_ID: TypeDefs-Syntax
+    :END:
+    #+BEGIN_SRC bnf
+    datatype definition
+        = "(", "type", datatype signature, { datatype variant }, ")" ;
+
+    datatype signature
+        = type name | "(", type name, type variable, { type variable }, ")" ;
+
+    datatype variant
+        = constructor | "(", constructor, monotype, { monotype }, ")" ;
+
+    type name = big identifier ;
+    constructor = big identifier ;
+    #+END_SRC
+
+*** Examples
+    #+BEGIN_SRC carth
+    ;; First form. Monomorphic datatype definition.
+    ;;
+    ;; ~Age~ only has one variant, and as such can be seen as a "wrapper" around
+    ;; ~Int~, restricting its usage.
+    (type Age
+      Int)
+
+    ;; Second form. Polymorphic datatype definition.
+    ;;
+    ;; ~List~ has two variants, representing that a list can either be empty, or a
+    ;; pair of a head and a tail.
+    (type (List a)
+      Nil
+      (Cons a (List a)))
+    #+END_SRC
 
 * TODO Expressions
 ** Literals
-*** Unit
-    ~unit~ is the only value inhibiting the type ~Unit~, equivalent to
-    ~()~ in Haskell and Rust.
+- Unit :: ~unit~ is the only value inhibiting the type ~Unit~,
+          equivalent to ~()~ in Haskell and Rust.
 
-*** Int
-    64-bit signed integer literal.
-
-**** Example
-     ~42~
-
-*** Double
-    64-bit double precision floating point literal
-
-**** Example
-     ~-13.37~
-
-*** Char
-    4-byte UTF-32 Character literal.
-
-**** Example
-     ~'a'~, ~'維'~, ~'🔥'~
-
-*** String
-    UTF-8 string literals. At the moment, generates to static arrays. Will likely be changed.
-
-**** Example
-     ~"Hello, World!"~, ~"😄😦🐱"~
-
-*** Bool
-    ~True~ or ~False~
-
+- Int :: 64-bit signed integer literal. Example: ~42~.
+- Double :: 64-bit double precision floating point literal. Example: ~-13.37~.
+- Char :: 4-byte UTF-32 Character literal. Example: ~'a'~, ~'維'~, ~'🔥'~.
+- String :: UTF-8 string literals. At the moment, generates to static
+            arrays. Will likely be changed. Example: ~"Hello, World!"~, ~"😄😦🐱"~.
+- Bool :: ~True~ or ~False~.
 ** TODO Variable
 
 ** TODO Function application
@@ -158,6 +171,9 @@ complete, but it may not be.
    Pattern matching. Used to deconstruct algebraic datatypes.
 
 *** Syntax
+    :PROPERTIES:
+    :CUSTOM_ID: Match-Syntax
+    :END:
     #+BEGIN_SRC bnf
     match = "(", "match", expression, case, { case } , ")" ;
     case = "(", pattern, expression, ")" ;
@@ -166,6 +182,9 @@ complete, but it may not be.
     #+END_SRC
 
 *** Example
+    :PROPERTIES:
+    :CUSTOM_ID: Match-Example
+    :END:
     #+BEGIN_SRC carth
     (match p
       [(Pair a _) a])
@@ -197,10 +216,54 @@ complete, but it may not be.
         [(Pair a _) a]))
     #+END_SRC
 
-** TODO Constructor
+** Constructor
+   By applying a constructor to some arguments, or just presenting it
+   literally in the case of a nullary constructor, a value of the
+   associated algebraic datatype is produced. Constructors of arity >
+   0 behave like n-ary functions: curried and the whole shebang.
 
-* TODO Patterns
+*** Syntax
+    See [[#TypeDefs-Syntax][Type definitions/Syntax]].
 
+*** Example
+    #+BEGIN_SRC carth
+    ;; The following datatype definition will make available the constructors ~Unit~
+    ;; and ~Pair~ in the environment.
+    (type UnitOrPair
+      Unit
+      (Pair Int Int))
+
+
+    ;; The ~Unit~ constructor is nullary, and will construct a ~UnitOrPair~ just
+    ;; presented literally.
+    (define: unit
+        UnitOrPair
+      Unit)
+
+    ;; The ~Pair~ constructor is binary, and takes two arguments to construct a
+    ;; ~UnitOrPair~. It behaves like a function of two ~Int~ arguments, returning a
+    ;; ~UnitOrPair~.
+    (define: pair''
+        (Fun Int Int UnitOrPair)
+      Pair)
+    (define: pair'
+        (Fun Int UnitOrPair)
+      (Pair 3))
+    (define: pair
+        UnitOrPair
+      (pair' 5))
+    #+END_SRC
+* Patterns
+  Patterns are used to conditionally deconstruct values of algebraic
+  datatypes in pattern-matching contexts.
+
+  There are 3 kinds of patterns: nullary constructors, n-ary
+  constructions, and variable bindings.
+
+*** Syntax
+    See [[#Match-Syntax][Match/Syntax]].
+** Example
+   See [[#Match-Example][Match/Example]].
 * TODO Type system
 
 * TODO Memory model
