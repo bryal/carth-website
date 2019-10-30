@@ -16,6 +16,9 @@ complete, but it may not be.
 ** TODO Glossary
 
 * TODO Lexical structure
+  For details about the syntax that are not covered explicitly in this
+  document or cannot be inferred from the provided examples, please
+  consult the source of the parser directly in [[https://gitlab.com/JoJoZ/carth/blob/master/src/Parse.hs][Parse.hs]].
 
 * TODO Macros
 
@@ -30,34 +33,6 @@ complete, but it may not be.
 
    Global variables are practically equivalent to local variables, in
    all respects but scope.
-
-*** Syntax
-    #+BEGIN_SRC bnf
-    definition
-        = "(", ( implicitly typed definition | explicitly typed definition ), ")" ;
-
-    implicitly typed definition
-        = "define", ( variable definition | function definition );
-    explicitly typed definition
-        = "define:", ( typed variable definition | typed function definition );
-
-    variable definition
-        = name, expression ;
-    function definition
-        = "(", name, parameter, { parameter }, ")", expression ;
-
-    typed variable definition
-        = name, definition type, expression ;
-    typed function definition
-        = "(", name, parameter, { parameter }, ")", definition type, expression ;
-
-    name = small identifier ;
-    parameter = small identifier ;
-
-    definition type = polytype | monotype ;
-    polytype = "(", "forall", "(", type variable, { type variable }, ")"
-                            , monotype, ")" ;
-    #+END_SRC
 
 *** Examples
     #+BEGIN_SRC carth
@@ -94,23 +69,6 @@ complete, but it may not be.
    Algebraic datatypes (aka tagged/discriminated unions) are defined
    at the top-level with the ~type~ special form. Roughly equivalent
    to ~data~ in Haskell and ~enum~ in Rust.
-*** Syntax
-    :PROPERTIES:
-    :CUSTOM_ID: TypeDefs-Syntax
-    :END:
-    #+BEGIN_SRC bnf
-    datatype definition
-        = "(", "type", datatype signature, { datatype variant }, ")" ;
-
-    datatype signature
-        = type name | "(", type name, type variable, { type variable }, ")" ;
-
-    datatype variant
-        = constructor | "(", constructor, monotype, { monotype }, ")" ;
-
-    type name = big identifier ;
-    constructor = big identifier ;
-    #+END_SRC
 
 *** Examples
     #+BEGIN_SRC carth
@@ -157,11 +115,6 @@ complete, but it may not be.
    - assert at compile-time that an expression is of or can specialize to the given type;
    - or specialize the type of a generic expression, restricting its usage.
 
-*** Syntax
-    #+BEGIN_SRC bnf
-    type ascription = "(", ":", expression, type, ")" ;
-    #+END_SRC
-
 *** Example
     #+BEGIN_SRC carth
     (: x Int)
@@ -172,17 +125,6 @@ complete, but it may not be.
 
    Note that the cases of a match-expression must be exhaustive and
    non-redundant.
-
-*** Syntax
-    :PROPERTIES:
-    :CUSTOM_ID: Match-Syntax
-    :END:
-    #+BEGIN_SRC bnf
-    match = "(", "match", expression, case, { case } , ")" ;
-    case = "(", pattern, expression, ")" ;
-    pattern = constructor | pattern construction | variable ;
-    pattern construction = "(", constructor, pattern, { pattern }, ")" ;
-    #+END_SRC
 
 *** Example
     :PROPERTIES:
@@ -219,11 +161,6 @@ complete, but it may not be.
    generated variable that cannot be expressed by the user (which
    means it won't shadow any other binding).
 
-*** Syntax
-    #+BEGIN_SRC bnf
-    fun-match = "(", "fun-match", case, { case } , ")" ;
-    #+END_SRC
-
 *** Example
     #+BEGIN_SRC carth
     ;; Two versions of `fst`, which returns the first value of a pair
@@ -243,9 +180,6 @@ complete, but it may not be.
    literally in the case of a nullary constructor, a value of the
    associated algebraic datatype is produced. Constructors of arity >
    0 behave like n-ary functions: curried and the whole shebang.
-
-*** Syntax
-    See [[#TypeDefs-Syntax][Type definitions/Syntax]].
 
 *** Example
     #+BEGIN_SRC carth
@@ -282,8 +216,6 @@ complete, but it may not be.
   There are 3 kinds of patterns: nullary constructors, n-ary
   constructions, and variable bindings.
 
-*** Syntax
-    See [[#Match-Syntax][Match/Syntax]].
 ** Example
    See [[#Match-Example][Match/Example]].
 * TODO Type system
