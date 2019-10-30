@@ -170,6 +170,9 @@ complete, but it may not be.
 ** Match
    Pattern matching. Used to deconstruct algebraic datatypes.
 
+   Note that the cases of a match-expression must be exhaustive and
+   non-redundant.
+
 *** Syntax
     :PROPERTIES:
     :CUSTOM_ID: Match-Syntax
@@ -186,8 +189,27 @@ complete, but it may not be.
     :CUSTOM_ID: Match-Example
     :END:
     #+BEGIN_SRC carth
-    (match p
-      [(Pair a _) a])
+    (type Foo
+      Bar
+      Baz)
+    (type (Pair a b)
+      (Pair a b))
+
+    ;; Ok
+    (define (fst pair)
+      (match pair
+        [(Pair a _) a]))
+
+    ;; Error. Redundant pattern. ~Pair _ _~ already covered by previous pattern ~_~
+    (define (redundant pair)
+      (match pair
+        [_ 1]
+        [(Pair x y) 2]))
+
+    ;; Error. Inexhaustive pattern. All cases not covered, specifically ~Bar~
+    (define (inexhaustive foo)
+      (match foo
+        [Baz 123]))
     #+END_SRC
 
 ** FunMatch
