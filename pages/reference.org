@@ -70,6 +70,9 @@ complete, but it may not be.
    at the top-level with the ~type~ special form. Roughly equivalent
    to ~data~ in Haskell and ~enum~ in Rust.
 
+   Recursive datatypes must contain a ~Box~ indirection to be
+   representable in memory with a finite size.
+
 *** Examples
     #+BEGIN_SRC carth
     ;; First form. Monomorphic datatype definition.
@@ -82,10 +85,11 @@ complete, but it may not be.
     ;; Second form. Polymorphic datatype definition.
     ;;
     ;; ~List~ has two variants, representing that a list can either be empty, or a
-    ;; pair of a head and a tail.
+    ;; pair of a head and a tail. Note that we must have a ~Box~ indirection so that
+    ;; it doesn't have infinite size.
     (type (List a)
       Nil
-      (Cons a (List a)))
+      (Cons a (Box (List a))))
     #+END_SRC
 
 * TODO Expressions
