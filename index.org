@@ -22,6 +22,10 @@
 
 Purely functional programming with lisp-syntax. Less infix, more parens!
 
+* /WORK IN PROGRESS/
+  Just as a little disclaimer: this project is in the very early
+  stages of development, so there are no guarantees of stability etc.
+
 * Why Carth?
   - Scheme-inspired syntax and feel
   - Static, Hindley-Milner typechecking à la ML
