@@ -68,6 +68,7 @@ main {
 
 #sitenav {
     padding: 4px;
+    margin-bottom: 40px;
     background-color: rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: space-evenly;
