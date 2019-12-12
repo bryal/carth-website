@@ -43,7 +43,9 @@ Purely functional programming with lisp-syntax. Less infix, more parens!
   (define main fizzbuzz)
 
   (define (fizzbuzz _)
-    (foldr (after seq (after display fizzbuzz')) unit (range 0 100)))
+    (foldr (after seq (after display fizzbuzz'))
+           unit
+           (range 0 100)))
 
   (define (fizzbuzz' n)
     (match (Pair (% n 3) (% n 5))
@@ -62,7 +64,7 @@ Purely functional programming with lisp-syntax. Less infix, more parens!
 
   ;;? Function composition. Read "f after g".
   (define: (after f g x)
-      (Fun (Fun b c) (Fun a b) (Fun a c))
+      (forall [a b c] (Fun (Fun b c) (Fun a b) (Fun a c)))
     (f (g x)))
 
   ;;? Sequence operations
@@ -71,19 +73,31 @@ Purely functional programming with lisp-syntax. Less infix, more parens!
   ;;? Inclusive range
   (define: (range first last)
       (Fun Int Int (Iter Int))
-    (fun _
-      (if (> first last)
-          IterNil
-        (IterCons first (range (succ first) last)))))
+    (Iter (fun _
+            (if (> first last)
+                None
+              (Some (Pair first (range (succ first) last)))))))
 
   ;;? An iterator. Equivalent to a lazy linked list
   (type (Iter a)
-    IterNil
-    (IterCons a (Iter a)))
+    (Iter (Fun Unit (Maybe (Pair a (Iter a))))))
 
-  (define: (succ n)
-      (Fun Int Int)
-    (+ n 1))
+  (type (Maybe a)
+    None
+    (Some a))
+
+  (define: (foldr f b as)
+      (forall [a b] (Fun (Fun a b b) b (Iter a) b))
+    (match (next as)
+      [None b]
+      [(Some a as') (f a (foldr f b as'))]))
+
+  (define: next
+      (forall [a] (Fun (Iter a) (Maybe (Pair a (Iter a)))))
+    (fun-match
+      [(Iter f) (f unit)]))
+
+  (define (succ n) (+ n 1))
   #+END_SRC
 
 * Documentation
