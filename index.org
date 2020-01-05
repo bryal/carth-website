@@ -1,4 +1,4 @@
-#+TITLE: The Carth Programming Language
+#+TITLE: Carth
 #+SUBTITLE: Purely functional programming with lisp-syntax. Less infix, more parens!
 
 #+HTML_HEAD: <link href="/css/style.css" rel="stylesheet" type="text/css" />
