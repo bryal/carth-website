@@ -80,7 +80,7 @@ complete, but it may not be.
     ;; ~Age~ only has one variant, and as such can be seen as a "wrapper" around
     ;; ~Int~, restricting its usage.
     (type Age
-      Int)
+      (Age Int))
 
     ;; Second form. Polymorphic datatype definition.
     ;;
