@@ -136,9 +136,10 @@ the section for easy sharing."
   '((:html-divs nil nil '((postamble "footer" "postamble")))))
 
 (defun org-publish-to-carth-html (plist filename pub-dir)
-  (org-publish-org-to 'carth-html filename
-		      ".html"
-		      plist pub-dir))
+  (let ((org-html-htmlize-output-type 'css))
+    (org-publish-org-to 'carth-html filename
+                        ".html"
+                        plist pub-dir)))
 
 (let* ((dir (file-name-directory load-file-name))
        (root "/")
@@ -156,7 +157,8 @@ the section for easy sharing."
                     :with-latex t
                     :with-tables t
                     :with-toc t
-                    :with-todo-keywords t
+                    :with-todo-keywords nil
+                    :exclude-tags ("noexport")
 
                     :html-head ,(format "<link href=\"%s\" rel=\"stylesheet\" type=\"text/css\" />" (concat root "css/style.css"))
                     :html-home/up-format
