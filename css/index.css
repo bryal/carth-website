@@ -2,7 +2,8 @@ header h1:before, header h1:after {
     content: "⚙";
     display: inline-block;
     position: relative;
-    font-size: 1.3em;
+    top: 2px;
+    font-size: 1.2em;
     animation: spin 5s linear infinite;
 }
 

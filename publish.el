@@ -9,6 +9,7 @@
            (org-export-data (or (plist-get info :title) "") info))
    (format "<meta name=\"author\" content=\"%s\">\n"
            (org-export-data (plist-get info :author) info))
+   "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
    (plist-get info :html-head)
    "\n</head>\n"
    "<body>\n"
