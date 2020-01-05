@@ -1,15 +1,8 @@
-header h1 {
-    height: calc(4em * 1.6);
-    margin: 0 1.6em;
-}
-
 header h1:before, header h1:after {
     content: "⚙";
-    /* width: 40px; */
-    /* height: 40px; */
+    display: inline-block;
     position: relative;
     font-size: 1.3em;
-    /* bottom: 6px; */
     animation: spin 5s linear infinite;
 }
 

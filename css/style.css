@@ -2,13 +2,11 @@
     /* Variable definitions */
     --toc-width: 320px;
     --common-padding: 18px;
-    --main-width: 720px;
+    --article-width: 640px;
+    --shaded: rgba(0, 0, 0, 0.07);
 }
 
 body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
     font: 16px "Fira Sans", "Dejavu Sans", sans-serif;
     line-height: 1.6;
     margin: 0;
@@ -17,38 +15,67 @@ body {
 }
 
 header {
-    min-width: 100%;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.4em;
 }
 
-header h1.title {
+#sitenav {
+    padding: 8px 0;
+    background-color: var(--shaded);
+    width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 0.8em;
+    justify-content: flex-end;
+}
+
+#sitenav a {
+    padding: 0 5px;
+    margin: 0 5px;
+}
+
+#sitenav a:visited {
+    color: rgba(20, 70, 240, 0.85);
+}
+
+header .title {
+    margin-top: 0.9em;
     margin-bottom: 0.6em;
 }
 
-#content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
+header .subtitle {
+    font-style: italic;
+}
+
+main {
+    display: grid;
+    grid-template-columns: var(--toc-width) auto var(--toc-width);
 }
 
 #table-of-contents {
+    grid-column: 1 / 2;
     font-size: 0.83em;
-    min-width: var(--toc-width);
-    width: var(--toc-width);
     padding: var(--common-padding);
 }
 
-#table-of-contents > h2, main > div:first-child > h2 {
+#table-of-contents > h2 {
     margin-top: 0px;
 }
 
 #table-of-contents ul {
     padding-left: 16px;
+}
+
+article {
+    grid-column: 2 / 3;
+    justify-self: center;
+    max-width: var(--article-width);
+    width: auto;
+    padding: var(--common-padding);
+}
+
+article > p:first-child, article > div:first-child > h2 {
+    margin-top: 0;
 }
 
 .tag {
@@ -59,32 +86,8 @@ header h1.title {
     font-size: 0.8em;
 }
 
-main {
-    max-width: var(--main-width);
-    /*min-width: 360px;*/
-    width: calc(100% - var(--toc-width) - 4*var(--common-padding));
-    padding: var(--common-padding);
-}
-
-#sitenav {
-    padding: 4px;
-    margin-bottom: 40px;
-    background-color: rgba(0, 0, 0, 0.05);
-    display: flex;
-    justify-content: space-evenly;
-}
-
-#sitenav a:visited {
-    color: rgba(20, 70, 240, 0.85);
-}
-
-h2 {
-    margin-top: 2.2em;
-}
-
-#right-padding {
-    max-width: calc(var(--toc-width) + 2*var(--common-padding));
-    width: calc(100% - var(--toc-width) - var(--main-width) - 4*var(--common-padding));
+.outline-2 {
+    margin-bottom: 2.6em;
 }
 
 img {
@@ -141,6 +144,8 @@ a:hover {
 pre.src {
     font-size: 0.9em;
     overflow-x: auto !important;
+    border: rgb(0, 0, 0, 0.2) 2px dashed;
+    padding: 6px 8px;
 }
 
 /* CUSTOM_ID boxes */
@@ -153,42 +158,40 @@ code {
     padding: 0 0.15em;
 }
 
+.footdef {
+    display: flex;
+}
+
 footer {
-    flex-grow: 1;
     padding: 14px;
     padding-top: 18px;
     margin-top: 20px;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--shaded);
 }
 
 footer p {
     text-align: left;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1000px) {
     :root {
 	--common-padding: 12px;
     }
 
     body {
 	font-size: 13px;
-	width: 100%;
     }
 
     #table-of-contents {
 	padding: 8px;
-	min-width: 0;
-	width: 100%;
     }
 
     main {
 	padding: 10px;
-	max-width: 100%;
-	min-width: 0;
-	width: 100%;
+	display: block;
     }
 
-    #right-padding {
-	width: 0;
+    article {
+	max-width: none;
     }
 }

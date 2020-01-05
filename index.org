@@ -1,26 +1,10 @@
 #+TITLE: The Carth Programming Language
-#+AUTHOR: JoJo
-#+EMAIL: jo@jo.zone
-#+LANGUAGE: en
-#+OPTIONS: h:4 tex:t f:t
-#+OPTIONS: prop:("VERSION")
-#+HTML_DOCTYPE: html5
+#+SUBTITLE: Purely functional programming with lisp-syntax. Less infix, more parens!
+
 #+HTML_HEAD: <link href="/css/style.css" rel="stylesheet" type="text/css" />
 #+HTML_HEAD: <link href="/css/index.css" rel="stylesheet" type="text/css" />
-#+HTML_POSTAMBLE: <p class="author">Author: %a (%e)</p><p class="date">Created: %T</p><p class="creator">%c</p>
 
-
-# #+HTML: <div class="outline-2" id="meta">
-# | *Author* | {{{author}}} ({{{email}}})    |
-# | *Date*   | {{{time(%Y-%m-%d %H:%M:%S)}}} |
-# #+HTML: </div>
-
-#+HTML: <main><nav id="sitenav"> <a href="/">Home</a> <a href="/pages/reference.html">Reference</a> <a href="https://gitlab.com/JoJoZ/carth">Carth repo</a> <a href="https://gitlab.com/JoJoZ/carth-website">Site repo</a> </nav>
-
-#+HTML_AFTER_CONTENTS: </main><div id="right-padding"></div>
-
-
-Purely functional programming with lisp-syntax. Less infix, more parens!
+Welcome to the homepage of the Carth programming language!
 
 * /WORK IN PROGRESS/
   Just as a little disclaimer: this project is in the very early
@@ -57,8 +41,8 @@ Purely functional programming with lisp-syntax. Less infix, more parens!
   (type (Pair a b)
     (Pair a b))
 
-  ;; We implement some routines in a helper library in a language with C FFI, like
-  ;; Rust.
+  ;; We implement some routines in a helper library in a language with C
+  ;; FFI, like Rust.
   (extern display (Fun String Unit))
   (extern show-int (Fun Int String))
 
@@ -101,7 +85,7 @@ Purely functional programming with lisp-syntax. Less infix, more parens!
   #+END_SRC
 
 * Documentation
-  - [[./pages/reference.org][The Carth Reference]]
+  - [[./reference.org][The Carth Reference]]
 
 * Development
   All development on the Carth project happens openly on [[https://gitlab.com/JoJoZ/carth][GitLab in

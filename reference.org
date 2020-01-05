@@ -1,5 +1,4 @@
 #+TITLE: The Carth Reference
-#+INCLUDE: "../page.org"
 
 This document is the primary reference for the Carth programming
 language. It is updated on a best-effort basis. It should be valid and
@@ -38,23 +37,24 @@ complete, but it may not be.
     #+BEGIN_SRC carth
     ;; First form. Implicitly typed variable definition.
     ;;
-    ;; Bind the global variable ~id-iv~ to the identity function. No explicit type
-    ;; signature is given - it is statically inferred by the typechecker to be the
-    ;; equivalent of ~(forall [a] (Fun a a))~
+    ;; Bind the global variable ~id-iv~ to the identity function. No
+    ;; explicit type signature is given - it is statically inferred by the
+    ;; typechecker to be the equivalent of ~(forall [a] (Fun a a))~
     (define id-iv
       (fun x x))
 
     ;; Second form. Implicitly typed function definition.
     ;;
-    ;; Again, the identity function, equivalent to the defition above, but using the
-    ;; more convenient function definition syntax.
+    ;; Again, the identity function, equivalent to the defition above, but
+    ;; using the more convenient function definition syntax.
     (define (id-if x)
       x)
 
     ;; Third form. Explicitly typed variable definition.
     ;;
-    ;; Explicit type signature is given. The type must properly be a polytype (aka
-    ;; /type scheme/) to be valid and instantiable for any monotype.
+    ;; Explicit type signature is given. The type must properly be a
+    ;; polytype (aka /type scheme/) to be valid and instantiable for any
+    ;; monotype.
     (define: id-ev
         (forall [a] (Fun a a))
       (fun x x))
@@ -77,16 +77,16 @@ complete, but it may not be.
     #+BEGIN_SRC carth
     ;; First form. Monomorphic datatype definition.
     ;;
-    ;; ~Age~ only has one variant, and as such can be seen as a "wrapper" around
-    ;; ~Int~, restricting its usage.
+    ;; ~Age~ only has one variant, and as such can be seen as a "wrapper"
+    ;; around ~Int~, restricting its usage.
     (type Age
       (Age Int))
 
     ;; Second form. Polymorphic datatype definition.
     ;;
-    ;; ~List~ has two variants, representing that a list can either be empty, or a
-    ;; pair of a head and a tail. Note that we must have a ~Box~ indirection so that
-    ;; it doesn't have infinite size.
+    ;; ~List~ has two variants, representing that a list can either be
+    ;; empty, or a pair of a head and a tail. Note that we must have a
+    ;; ~Box~ indirection so that it doesn't have infinite size.
     (type (List a)
       Nil
       (Cons a (Box (List a))))
@@ -146,13 +146,15 @@ complete, but it may not be.
       (match pair
         [(Pair a _) a]))
 
-    ;; Error. Redundant pattern. ~Pair _ _~ already covered by previous pattern ~_~
+    ;; Error. Redundant pattern. ~Pair _ _~ already covered by previous
+    ;; pattern ~_~
     (define (redundant pair)
       (match pair
         [_ 1]
         [(Pair x y) 2]))
 
-    ;; Error. Inexhaustive pattern. All cases not covered, specifically ~Bar~
+    ;; Error. Inexhaustive pattern. All cases not covered, specifically
+    ;; ~Bar~
     (define (inexhaustive foo)
       (match foo
         [Baz 123]))
@@ -187,22 +189,22 @@ complete, but it may not be.
 
 *** Example
     #+BEGIN_SRC carth
-    ;; The following datatype definition will make available the constructors ~Unit~
-    ;; and ~Pair~ in the environment.
+    ;; The following datatype definition will make available the
+    ;; constructors ~Unit~ and ~Pair~ in the environment.
     (type UnitOrPair
       Unit
       (Pair Int Int))
 
 
-    ;; The ~Unit~ constructor is nullary, and will construct a ~UnitOrPair~ just
-    ;; presented literally.
+    ;; The ~Unit~ constructor is nullary, and will construct a
+    ;; ~UnitOrPair~ just presented literally.
     (define: unit
         UnitOrPair
       Unit)
 
-    ;; The ~Pair~ constructor is binary, and takes two arguments to construct a
-    ;; ~UnitOrPair~. It behaves like a function of two ~Int~ arguments, returning a
-    ;; ~UnitOrPair~.
+    ;; The ~Pair~ constructor is binary, and takes two arguments to
+    ;; construct a ~UnitOrPair~. It behaves like a function of two ~Int~
+    ;; arguments, returning a ~UnitOrPair~.
     (define: pair''
         (Fun Int Int UnitOrPair)
       Pair)
@@ -246,7 +248,6 @@ complete, but it may not be.
    Consider a file ~cool.org~ with the following content:
 
    #+BEGIN_SRC org
-
    ,#+TITLE: Literate Programming Rules!
 
    Literate programming is just really cool!
@@ -283,7 +284,6 @@ complete, but it may not be.
    following:
 
    #+BEGIN_SRC carth
-
 
 
 
