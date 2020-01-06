@@ -22,8 +22,8 @@ Welcome to the homepage of the Carth programming language!
 
 * Development
   All development on the Carth project happens openly on [[https://github.com/bryal/carth][Github in
-  ~JoJoZ/carth~]]. The source for this website is also on [[https://github.com/bryal/carth-website][Github in
-  ~JoJoZ/carth-website~]].
+  ~bryal/carth~]]. The source for this website is also on [[https://github.com/bryal/carth-website][Github in
+  ~bryal/carth-website~]].
 
 * Example
   Just to give you a quick taste. More examples can be found in the
