@@ -61,9 +61,13 @@ header {
     justify-content: flex-end;
 }
 
+#sitenav a:first-child {
+    margin-right: auto;
+}
+
 #sitenav a {
-    padding: 0 5px;
-    margin: 0 5px;
+    padding: 0 6px;
+    margin: 0 8px;
     font-size: 1.1em;
     font-weight: bold;
     color: var(--pinkish-light);

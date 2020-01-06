@@ -23,7 +23,7 @@
 
                     :html-head ,(format "<link href=\"%s\" rel=\"stylesheet\" type=\"text/css\" />" (concat root "css/style.css"))
                     :html-home/up-format
-                    ,(concat "<a href=\"%s\">Home</a>"
+                    ,(concat "<a href=\"%s\">Carth</a>"
                              "<a href=\"" root "reference.html\">Documentation</a>"
                              "<a href=\"https://github.com/bryal/carth/releases\">Downloads</a>"
                              "<a href=\"https://github.com/bryal/carth\">Repo</a>"
