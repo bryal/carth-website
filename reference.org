@@ -35,6 +35,10 @@ complete, but it may not be.
    ~define~/ special forms, or their explicitly typed ~define:~
    counterparts.
 
+   The function definition special forms allows us to name parameters
+   and deconstruct them with irrefutable patterns. This is essentially
+   syntactic sugar for binding a variable to a ~fun-match~ expression.
+
    Global variables are practically equivalent to local variables, in
    all respects but scope.
 
@@ -42,17 +46,23 @@ complete, but it may not be.
     #+BEGIN_SRC carth
     ;; First form. Implicitly typed variable definition.
     ;;
-    ;; Bind the global variable ~id-iv~ to the identity function. No
-    ;; explicit type signature is given - it is statically inferred by the
-    ;; typechecker to be the equivalent of ~(forall [a] (Fun a a))~
-    (define id-iv
-      (fun x x))
+    ;; Bind the global variable ~fst-iv~ to the function that extracts the
+    ;; first value of a pair. No explicit type signature is given - it is
+    ;; statically inferred by the typechecker to be the equivalent of
+    ;; ~(forall (a b) (Fun (Pair a b) a))~
+    (define fst-iv
+      (fun ((Pair x _)) x))
 
     ;; Second form. Implicitly typed function definition.
     ;;
-    ;; Again, the identity function, equivalent to the defition above, but
+    ;; Again, the fst function, equivalent to the defition above, but
     ;; using the more convenient function definition syntax.
-    (define (id-if x)
+    (define (fst-if p)
+      (match p
+        (case (Pair x _) x)))
+    ;; ... and again, together with the even more conventient
+    ;; destructuring syntax
+    (define (fst-ifd (Pair x _))
       x)
 
     ;; Third form. Explicitly typed variable definition.
@@ -60,13 +70,13 @@ complete, but it may not be.
     ;; Explicit type signature is given. The type must properly be a
     ;; polytype (aka /type scheme/) to be valid and instantiable for any
     ;; monotype.
-    (define: id-ev
-        (forall (a) (Fun a a))
-      (fun x x))
+    (define: fst-ev
+        (forall (a b) (Fun (Pair a b) a))
+      (fun-match (case (Pair x _) x)))
 
     ;; Fourth form. Explicitly typed function definition.
-    (define: (id-ef x)
-        (forall (a) (Fun a a))
+    (define: (fst-ef (Pair x _))
+        (forall (a b) (Fun (Pair a b) a))
       x)
     #+END_SRC
 
