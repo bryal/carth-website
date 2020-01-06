@@ -17,73 +17,6 @@ Welcome to the homepage of the Carth programming language!
   - LLVM-based backend
   - [[file:reference.org::#Literate-Carth][Native support for literate programming in Org-mode]]
 
-* Example
-  Just to give you a quick taste. More examples can be found in the
-  [[https://github.com/bryal/carth/tree/master/examples/][~examples~ directory in the repository]].
-
-  #+BEGIN_SRC carth
-  ;; Disclaimer: This doesn't quite work yet, but we're getting close!
-
-  (define main fizzbuzz)
-
-  (define (fizzbuzz _)
-    (foldr (after seq (after display fizzbuzz'))
-           unit
-           (range 0 100)))
-
-  (define (fizzbuzz' n)
-    (match (Pair (% n 3) (% n 5))
-      [(Pair 0 0) "Fizzbuzz"]
-      [(Pair 0 _) "Fizz"]
-      [(Pair _ 0) "Buzz"]
-      [_ (show-int n)]))
-
-  (type (Pair a b)
-    (Pair a b))
-
-  ;; We implement some routines in a helper library in a language with C
-  ;; FFI, like Rust.
-  (extern display (Fun String Unit))
-  (extern show-int (Fun Int String))
-
-  ;;? Function composition. Read "f after g".
-  (define: (after f g x)
-      (forall [a b c] (Fun (Fun b c) (Fun a b) (Fun a c)))
-    (f (g x)))
-
-  ;;? Sequence operations
-  (define (seq _ b) b)
-
-  ;;? Inclusive range
-  (define: (range first last)
-      (Fun Int Int (Iter Int))
-    (Iter (fun _
-            (if (> first last)
-                None
-              (Some (Pair first (range (succ first) last)))))))
-
-  ;;? An iterator. Equivalent to a lazy linked list
-  (type (Iter a)
-    (Iter (Fun Unit (Maybe (Pair a (Iter a))))))
-
-  (type (Maybe a)
-    None
-    (Some a))
-
-  (define: (foldr f b as)
-      (forall [a b] (Fun (Fun a b b) b (Iter a) b))
-    (match (next as)
-      [None b]
-      [(Some a as') (f a (foldr f b as'))]))
-
-  (define: next
-      (forall [a] (Fun (Iter a) (Maybe (Pair a (Iter a)))))
-    (fun-match
-      [(Iter f) (f unit)]))
-
-  (define (succ n) (+ n 1))
-  #+END_SRC
-
 * Documentation
   - [[./reference.org][The Carth Reference]]
 
@@ -91,6 +24,99 @@ Welcome to the homepage of the Carth programming language!
   All development on the Carth project happens openly on [[https://github.com/bryal/carth][Github in
   ~JoJoZ/carth~]]. The source for this website is also on [[https://github.com/bryal/carth-website][Github in
   ~JoJoZ/carth-website~]].
+
+* Example
+  Just to give you a quick taste. More examples can be found in the
+  [[https://github.com/bryal/carth/tree/master/examples/][~examples~ directory in the repository]].
+
+  #+BEGIN_SRC carth
+  ;; Note that many of these functions are/will be in the standard
+  ;; library in some shape or form. We just include them all in the same
+  ;; file here to show off more of the syntax and features.
+
+  ;; ~start~ is the programs entrypoint
+  (define (start _) (fizzbuzz unit))
+
+  (define (fizzbuzz _)
+    (for (range 1 100)
+         (comp display fizzbuzz')))
+
+  (define (fizzbuzz' n)
+    (match (Pair (divisible? n 3) (divisible? n 5))
+      (case (Pair false false) (my-show-int n))
+      (case (Pair true false) "Fizz")
+      (case (Pair false true) "Buzz")
+      (case (Pair true true) "Fizzbuzz")))
+
+  (define my-show-int
+    (fun-match
+      (case 1 "one")
+      (case 2 "two")
+      (case n (show-int n))))
+
+  ;; Apply an action to each element in an iterator
+  (define (for xs f)
+    (match (next xs)
+      (case None unit)
+      (case (Some (Pair x xs'))
+            (seq (f x) (for xs' f)))))
+
+  ;; Iterator over the closed range $[a, b]$
+  (define (range a b)
+    (Iter (Lazy (if (> a b)
+                    (fun _ None)
+                  (fun _ (Some (Pair a (range (+ a 1) b))))))))
+
+  ;; Advances an iterator, returning the next value and the rest of the
+  ;; iterator
+  (define (next (Iter it)) (lively it))
+
+  ;; An iterator / non-strict list
+  (type (Iter a)
+    (Iter (Lazy (Maybe (Pair a (Iter a))))))
+
+  (define (lively (Lazy f))
+    (f unit))
+
+  ;; A lazy, or rather a non-strict value
+  (type (Lazy a)
+    (Lazy (Fun Unit a)))
+
+  (type (Maybe a)
+    None
+    (Some a))
+
+  (define (seq a b)
+    b)
+
+  ;; Function composition
+  (define (comp f g a)
+    (f (g a)))
+
+  (define (divisible? n m)
+    (= (rem n m) 0))
+
+  (define (display s)
+    (display-inline (str-append s "\n")))
+
+  ;;; Currying wrappers
+
+  (define (rem a b)          (rem-int     (Pair a b)))
+  (define (= a b)            (eq-int      (Pair a b)))
+  (define (> a b)            (gt-int      (Pair a b)))
+  (define (+ a b)            (add-int     (Pair a b)))
+  (define (str-append s1 s2) (-str-append (Pair s1 s2)))
+
+  ;;; External functions defined in the foreign-core library
+
+  (extern show-int (Fun Int Str))
+  (extern eq-int (Fun (Pair Int Int) Bool))
+  (extern gt-int (Fun (Pair Int Int) Bool))
+  (extern rem-int (Fun (Pair Int Int) Int))
+  (extern add-int (Fun (Pair Int Int) Int))
+  (extern display-inline (Fun Str Unit))
+  (extern -str-append (Fun (Pair Str Str) Str))
+  #+END_SRC
 
 * License
   Both the Carth project and this website itself are licensed under
