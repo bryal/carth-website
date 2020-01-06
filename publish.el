@@ -25,9 +25,9 @@
                     :html-home/up-format
                     ,(concat "<a href=\"%s\">Home</a>"
                              "<a href=\"" root "reference.html\">Documentation</a>"
-                             "<a href=\"https://gitlab.com/JoJoZ/carth/-/releases\">Downloads</a>"
-                             "<a href=\"https://gitlab.com/JoJoZ/carth\">Repo</a>"
-                             "<a href=\"https://gitlab.com/JoJoZ/carth-website\">Site repo</a>")
+                             "<a href=\"https://github.com/bryal/carth/releases\">Downloads</a>"
+                             "<a href=\"https://github.com/bryal/carth\">Repo</a>"
+                             "<a href=\"https://github.com/bryal/carth-website\">Site repo</a>")
                     :html-postamble "<p class=\"author\">Author: %a (%e)</p><p class=\"date\">Last updated: %T</p><p class=\"creator\">%c</p>"
                     :html-link-home ,root
                     ))))
