@@ -1,9 +1,19 @@
 :root {
-    /* Variable definitions */
+    /* Misc variables */
     --toc-width: 320px;
     --common-padding: 18px;
     --article-width: 640px;
     --shaded: rgba(0, 0, 0, 0.07);
+
+    --blackish: rgb(50, 50, 50);
+    --whiteish: rgb(254, 253, 252);
+    --blueish-dark: #004a8a;
+    --blueish: #0094ff;
+    --pinkish: #ff009a;
+    --pinkish-light: #ff66bb;
+    --pinkish-lighter: #ffb0e0;
+
+    /* Code */
     --emerald: #2ecc71;
     --river: #3498db;
     --amethyst: #9b59b6;
@@ -32,8 +42,8 @@ body {
     font: 16px "Fira Sans", "Dejavu Sans", sans-serif;
     line-height: 1.6;
     margin: 0;
-    color: rgb(50, 50, 50);
-    background-color: rgb(254, 253, 252);
+    color: var(--blackish);
+    background-color: var(--whiteish);
 }
 
 header {
@@ -45,7 +55,7 @@ header {
 
 #sitenav {
     padding: 8px 0;
-    background-color: var(--shaded);
+    background-color: var(--blueish-dark);
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -54,15 +64,18 @@ header {
 #sitenav a {
     padding: 0 5px;
     margin: 0 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--pinkish-light);
 }
 
 #sitenav a:visited {
-    color: rgba(20, 70, 240, 0.85);
+    color: var(--pinkish-light);
 }
 
 header .title {
     margin-top: 0.9em;
-    margin-bottom: 0.6em;
+    margin-bottom: 0.5em;
 }
 
 header .subtitle {
@@ -131,12 +144,12 @@ p {
 }
 
 a {
-    color: rgba(20, 70, 240, 0.85);
+    color: var(--blueish);
     text-decoration: none;
 }
 
 a:visited {
-    color: rgba(150, 40, 210, 0.85);
+    color: var(--blueish-dark);
 }
 
 a:hover {
@@ -166,7 +179,7 @@ a:hover {
 pre.src {
     font-size: 0.9em;
     overflow-x: auto !important;
-    border: rgb(0, 0, 0, 0.2) 2px dashed;
+    border: var(--pinkish-lighter) 2px dashed;
     padding: 6px 8px;
 }
 
@@ -176,7 +189,8 @@ pre.example {
 }
 
 code {
-    background-color: rgba(40, 160, 160, 0.1);
+    color: black;
+    background-color: var(--pinkish-lighter);
     padding: 0 0.15em;
 }
 
@@ -188,7 +202,12 @@ footer {
     padding: 14px;
     padding-top: 18px;
     margin-top: 20px;
-    background-color: var(--shaded);
+    background-color: var(--blueish-dark);
+    color: var(--whiteish);
+}
+
+footer a, footer a:visited {
+    color: var(--pinkish-light)
 }
 
 footer p {

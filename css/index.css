@@ -1,22 +1,21 @@
-header h1:before, header h1:after {
-    content: "⚙";
-    display: inline-block;
-    position: relative;
-    top: 2px;
-    font-size: 1.2em;
-    animation: spin 5s linear infinite;
+header {
+    margin-bottom: 5em;
 }
 
-header h1:before {
-    right: 10px;
+header .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 3.0em;
+    margin-top: 1.5em;
 }
 
-header h1:after {
-    left: 9px;
-}
-
-@keyframes spin {
-    100% {
-	transform: rotate(360deg);
-    }
+header .title:before {
+    content: "";
+    background: url("../img/logo_1024.png");
+    background-size: cover;
+    height: 5em;
+    width: 5em;
+    display: block;
+    margin-bottom: 0.4em;
 }
