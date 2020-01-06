@@ -19,3 +19,7 @@ header .title:before {
     display: block;
     margin-bottom: 0.4em;
 }
+
+#sitenav a:first-child {
+    display: none;
+}

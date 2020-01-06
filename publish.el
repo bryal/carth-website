@@ -23,11 +23,11 @@
 
                     :html-head ,(format "<link href=\"%s\" rel=\"stylesheet\" type=\"text/css\" />" (concat root "css/style.css"))
                     :html-home/up-format
-                    ,(concat "<a href=\"%s\">Carth</a>"
+                    ,(concat "<a href=\"%s\"><img src='" root "img/logo_512.png' /></a>"
                              "<a href=\"" root "reference.html\">Documentation</a>"
-                             "<a href=\"https://github.com/bryal/carth/releases\">Downloads</a>"
-                             "<a href=\"https://github.com/bryal/carth\">Repo</a>"
-                             "<a href=\"https://github.com/bryal/carth-website\">Site repo</a>")
+                             "<a href=\"https://github.com/bryal/carth/releases\">Releases</a>"
+                             "<a href=\"https://github.com/bryal/carth\">Source</a>"
+                             )
                     :html-postamble "<p class=\"author\">Author: %a (%e)</p><p class=\"date\">Last updated: %T</p><p class=\"creator\">%c</p>"
                     :html-link-home ,root
                     ))))
