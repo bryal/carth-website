@@ -8,7 +8,7 @@ complete, but it may not be.
 ** TODO How to use this document
 
 ** TODO Contributing
-   [[https://gitlab.com/JoJoZ/carth-website/tree/master/reference.org][Here is this file in the gitlab repository]].
+   [[https://github.com/bryal/carth-website/tree/master/reference.org][Here is this file in the github repository]].
 
 ** TODO Influences
 

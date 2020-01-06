@@ -15,11 +15,11 @@ Welcome to the homepage of the Carth programming language!
   - Static, Hindley-Milner typechecking à la ML
   - Currying
   - LLVM-based backend
-  - [[file:pages/reference.org::#Literate-Carth][Native support for literate programming in Org-mode]]
+  - [[file:reference.org::#Literate-Carth][Native support for literate programming in Org-mode]]
 
 * Example
   Just to give you a quick taste. More examples can be found in the
-  [[https://gitlab.com/JoJoZ/carth/tree/master/examples/][~examples~ directory in the repository]].
+  [[https://github.com/bryal/carth/tree/master/examples/][~examples~ directory in the repository]].
 
   #+BEGIN_SRC carth
   ;; Disclaimer: This doesn't quite work yet, but we're getting close!
@@ -88,8 +88,8 @@ Welcome to the homepage of the Carth programming language!
   - [[./reference.org][The Carth Reference]]
 
 * Development
-  All development on the Carth project happens openly on [[https://gitlab.com/JoJoZ/carth][GitLab in
-  ~JoJoZ/carth~]]. The source for this website is also on [[https://gitlab.com/JoJoZ/carth-website][GitLab in
+  All development on the Carth project happens openly on [[https://github.com/bryal/carth][Github in
+  ~JoJoZ/carth~]]. The source for this website is also on [[https://github.com/bryal/carth-website][Github in
   ~JoJoZ/carth-website~]].
 
 * License
