@@ -7,11 +7,11 @@
 
     --blackish: rgb(50, 50, 50);
     --whiteish: rgb(254, 253, 252);
-    --blueish-dark: #004a8a;
-    --blueish: #0094ff;
-    --pinkish: #ff009a;
-    --pinkish-light: #ff66bb;
-    --pinkish-lighter: #ffb0e0;
+    --blueish-dark: #00408a;
+    --blueish: #1f74ee;
+    --pinkish: #ff3e9f;
+    --pinkish-light: #ff70c0;
+    --pinkish-lighter: #ffbbee;
 
     /* Code */
     --emerald: #2ecc71;
@@ -55,7 +55,6 @@ header {
 
 #sitenav {
     padding: 8px 0;
-    background-color: var(--blueish-dark);
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -70,11 +69,11 @@ header {
     margin: 0 8px;
     font-size: 1.1em;
     font-weight: bold;
-    color: var(--pinkish-light);
+    color: var(--pinkish);
 }
 
 #sitenav a:visited {
-    color: var(--pinkish-light);
+    color: var(--pinkish);
 }
 
 header .title {
@@ -95,6 +94,16 @@ main {
     grid-column: 1 / 2;
     font-size: 0.83em;
     padding: var(--common-padding);
+    background-color: var(--blueish-dark);
+    color: var(--whiteish);
+}
+
+#table-of-contents a {
+    color: var(--pinkish-light);
+}
+
+#table-of-contents a:visited {
+    color: var(--pinkish-light);
 }
 
 #table-of-contents > h2 {
