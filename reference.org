@@ -17,7 +17,7 @@ complete, but it may not be.
 * TODO Lexical structure
   For details about the syntax that are not covered explicitly in this
   document or cannot be inferred from the provided examples, please
-  consult the source of the parser directly in [[https://gitlab.com/JoJoZ/carth/blob/master/src/Parse.hs][Parse.hs]].
+  consult the source of the parser directly in [[https://github.com/bryal/carth/blob/master/src/Parse.hs][Parse.hs]].
 
 * TODO Macros
 
