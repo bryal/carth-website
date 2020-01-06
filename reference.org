@@ -1,5 +1,10 @@
 #+TITLE: Carth Reference
 
+#+BEGIN_SRC carth :exports none
+(import std)
+(define (start _) unit)
+#+END_SRC
+
 This document is the primary reference for the Carth programming
 language. It is updated on a best-effort basis. It should be valid and
 complete, but it may not be.
@@ -56,12 +61,12 @@ complete, but it may not be.
     ;; polytype (aka /type scheme/) to be valid and instantiable for any
     ;; monotype.
     (define: id-ev
-        (forall [a] (Fun a a))
+        (forall (a) (Fun a a))
       (fun x x))
 
     ;; Fourth form. Explicitly typed function definition.
     (define: (id-ef x)
-        (forall [a] (Fun a a))
+        (forall (a) (Fun a a))
       x)
     #+END_SRC
 
@@ -87,9 +92,9 @@ complete, but it may not be.
     ;; ~List~ has two variants, representing that a list can either be
     ;; empty, or a pair of a head and a tail. Note that we must have a
     ;; ~Box~ indirection so that it doesn't have infinite size.
-    (type (List a)
-      Nil
-      (Cons a (Box (List a))))
+    (type (List' a)
+      (Cons' a (Box (List' a)))
+      Nil')
     #+END_SRC
 
 * TODO Expressions
@@ -121,7 +126,9 @@ complete, but it may not be.
 
 *** Example
     #+BEGIN_SRC carth
-    (: x Int)
+    (define (id-int x)
+      (: x Int))
+    ;; Inferred type of ~id-int~: (Fun Int Int)
     #+END_SRC
 
 ** Match
@@ -138,26 +145,28 @@ complete, but it may not be.
     (type Foo
       Bar
       Baz)
-    (type (Pair a b)
-      (Pair a b))
+    (type (Pair' a b)
+      (Pair' a b))
 
     ;; Ok
     (define (fst pair)
       (match pair
-        [(Pair a _) a]))
+        (case (Pair' a _) a)))
+    #+END_SRC
 
+    #+BEGIN_SRC carth :tangle no
     ;; Error. Redundant pattern. ~Pair _ _~ already covered by previous
     ;; pattern ~_~
     (define (redundant pair)
       (match pair
-        [_ 1]
-        [(Pair x y) 2]))
+        (case _ 1)
+        (case (Pair' x y) 2)))
 
     ;; Error. Inexhaustive pattern. All cases not covered, specifically
     ;; ~Bar~
     (define (inexhaustive foo)
       (match foo
-        [Baz 123]))
+        (case Baz 123)))
     #+END_SRC
 
 ** FunMatch
@@ -174,11 +183,11 @@ complete, but it may not be.
     ;; using normal `match`
     (define (fst-nofun p)
       (match p
-        [(Pair a _) a]))
+        (case (Pair a _) a)))
     ;; and using `fun-match`
     (define fst-fun
       (fun-match
-        [(Pair a _) a]))
+        (case (Pair a _) a)))
     #+END_SRC
 
 ** Constructor
@@ -190,30 +199,30 @@ complete, but it may not be.
 *** Example
     #+BEGIN_SRC carth
     ;; The following datatype definition will make available the
-    ;; constructors ~Unit~ and ~Pair~ in the environment.
+    ;; constructors ~UPUnit~ and ~UPPair~ in the environment.
     (type UnitOrPair
-      Unit
-      (Pair Int Int))
+      UPUnit
+      (UPPair Int Int))
 
 
-    ;; The ~Unit~ constructor is nullary, and will construct a
+    ;; The ~UPUnit~ constructor is nullary, and will construct a
     ;; ~UnitOrPair~ just presented literally.
-    (define: unit
+    (define: upunit
         UnitOrPair
-      Unit)
+      UPUnit)
 
-    ;; The ~Pair~ constructor is binary, and takes two arguments to
+    ;; The ~UPPair~ constructor is binary, and takes two arguments to
     ;; construct a ~UnitOrPair~. It behaves like a function of two ~Int~
     ;; arguments, returning a ~UnitOrPair~.
-    (define: pair''
+    (define: uppair''
         (Fun Int Int UnitOrPair)
-      Pair)
-    (define: pair'
+      UPPair)
+    (define: uppair'
         (Fun Int UnitOrPair)
-      (Pair 3))
-    (define: pair
+      (UPPair 3))
+    (define: uppair
         UnitOrPair
-      (pair' 5))
+      (uppair' 5))
     #+END_SRC
 * Patterns
   Patterns are used to conditionally deconstruct values of algebraic
@@ -283,7 +292,7 @@ complete, but it may not be.
    are preserved. The result of the untangling stage will be the
    following:
 
-   #+BEGIN_SRC carth
+   #+BEGIN_SRC carth :tangle no
 
 
 
