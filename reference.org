@@ -297,9 +297,9 @@ complete, but it may not be.
 
    #+END_SRC
 
-   When e.g. interpreting this file with ~carth i cool.org~, the Carth
-   source will untangled from the rest of the document. Line numbers
-   are preserved. The result of the untangling stage will be the
+   When compiling this file with ~carth c cool.org~, the Carth source
+   will be untangled from the rest of the document. Line numbers are
+   preserved. The result of the untangling stage will be the
    following:
 
    #+BEGIN_SRC carth :tangle no

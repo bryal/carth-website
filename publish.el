@@ -17,7 +17,7 @@
                     :with-footnotes t
                     :with-latex t
                     :with-tables t
-                    :with-toc t
+                    :with-toc 2
                     :with-todo-keywords nil
                     :exclude-tags ("noexport")
 
