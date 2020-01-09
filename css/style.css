@@ -7,11 +7,11 @@
 
     --blackish: rgb(50, 50, 50);
     --whiteish: rgb(254, 253, 252);
-    --blueish-dark: #00408a;
-    --blueish: #1f74ee;
-    --pinkish: #ff3e9f;
-    --pinkish-light: #ff70c0;
-    --pinkish-lighter: #ffbbee;
+    --secondary-dark: #00408a;
+    --secondary: #1f74ee;
+    --primary: #ff3e9f;
+    --primary-light: #ff70c0;
+    --primary-lighter: #ffbbee;
 
     /* Code */
     --emerald: #2ecc71;
@@ -76,11 +76,11 @@ header {
     margin: 0 8px;
     font-size: 1.1em;
     font-weight: bold;
-    color: var(--pinkish);
+    color: var(--primary);
 }
 
 #sitenav a:visited {
-    color: var(--pinkish);
+    color: var(--primary);
 }
 
 header {
@@ -105,16 +105,16 @@ main {
     align-self: start;
     font-size: 1.0em;
     padding: var(--common-padding);
-    background-color: var(--blueish-dark);
+    background-color: var(--secondary-dark);
     color: var(--whiteish);
 }
 
 #table-of-contents a {
-    color: var(--pinkish-light);
+    color: var(--primary-light);
 }
 
 #table-of-contents a:visited {
-    color: var(--pinkish-light);
+    color: var(--primary-light);
 }
 
 #table-of-contents > h2 {
@@ -168,12 +168,12 @@ p {
 }
 
 a {
-    color: var(--blueish);
+    color: var(--secondary);
     text-decoration: none;
 }
 
 a:visited {
-    color: var(--blueish-dark);
+    color: var(--secondary-dark);
 }
 
 a:hover {
@@ -203,7 +203,7 @@ a:hover {
 pre.src {
     font-size: 0.9em;
     overflow-x: auto !important;
-    border: var(--pinkish-lighter) 2px dashed;
+    border: var(--primary-lighter) 2px dashed;
     padding: 6px 8px;
 }
 
@@ -214,7 +214,7 @@ pre.example {
 
 code {
     color: black;
-    background-color: var(--pinkish-lighter);
+    background-color: var(--primary-lighter);
     padding: 0 0.15em;
 }
 
@@ -226,12 +226,12 @@ footer {
     padding: 14px;
     padding-top: 18px;
     margin-top: 20px;
-    background-color: var(--blueish-dark);
+    background-color: var(--secondary-dark);
     color: var(--whiteish);
 }
 
 footer a, footer a:visited {
-    color: var(--pinkish-light)
+    color: var(--primary-light)
 }
 
 footer p {
