@@ -88,6 +88,11 @@ complete, but it may not be.
    Recursive datatypes must contain a ~Box~ indirection to be
    representable in memory with a finite size.
 
+   Datatypes may be uninhabited, i.e. defined without any variants,
+   like ~(type Void)~. As these types have no variants, they have no
+   values, and we can't construct them -- thus the name
+   "uninhabited".
+
 *** Examples
     #+BEGIN_SRC carth
     ;; First form. Monomorphic datatype definition.
@@ -105,6 +110,11 @@ complete, but it may not be.
     (type (List' a)
       (Cons' a (Box (List' a)))
       Nil')
+
+    ;; An uninhabited type that can't be constructed. Useful when you want
+    ;; to employ the type system to make invalid states unrepresentable,
+    ;; or model propositions as types.
+    (type Void')
     #+END_SRC
 
 * TODO Expressions
@@ -147,6 +157,11 @@ complete, but it may not be.
    Note that the cases of a match-expression must be exhaustive and
    non-redundant.
 
+   When pattern matching on an uninhabited type, no cases can be given
+   as the type has no constructors, and the match-expression as a
+   whole is absurd. Absurdity, like ~panic~ or ~undefined~, implies
+   any type, as it's unreachable.
+
 *** Example
     :PROPERTIES:
     :CUSTOM_ID: Match-Example
@@ -162,6 +177,12 @@ complete, but it may not be.
     (define (fst pair)
       (match pair
         (case (Pair' a _) a)))
+
+    ;; Matching on an uninhabited type corresponds to the elimination rule
+    ;; for ⊥ (it implies anything).
+    (define: (absurd void)
+        (forall (a) (Fun Void' a))
+      (match void))
     #+END_SRC
 
     #+BEGIN_SRC carth :tangle no
