@@ -21,7 +21,8 @@
                     :with-todo-keywords nil
                     :exclude-tags ("noexport")
 
-                    :html-head ,(format "<link href=\"%s\" rel=\"stylesheet\" type=\"text/css\" />" (concat root "css/style.css"))
+                    :html-head ,(concat (format "<link rel=\"shortcut icon\" href=\"%s\"/>" (concat root "img/logo_128.png"))
+                                        (format "<link href=\"%s\" rel=\"stylesheet\" type=\"text/css\" />" (concat root "css/style.css")))
                     :html-home/up-format
                     ,(concat "<a href=\"%s\"><img src='" root "img/logo_512.png' /></a>"
                              "<a href=\"" root "reference.html\">Documentation</a>"

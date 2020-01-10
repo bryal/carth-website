@@ -1,6 +1,7 @@
 #+TITLE: Carth
 #+SUBTITLE: Purely functional programming with lisp-syntax. Less infix, more parens!
 
+#+HTML_HEAD: <link rel="shortcut icon" href="/img/logo_128.png" />
 #+HTML_HEAD: <link href="/css/style.css" rel="stylesheet" type="text/css" />
 #+HTML_HEAD: <link href="/css/index.css" rel="stylesheet" type="text/css" />
 

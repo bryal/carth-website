@@ -5,36 +5,25 @@
     --article-width: 640px;
     --shaded: rgba(0, 0, 0, 0.07);
 
+    --primary-hue: 300;
+    --primary-sat: 70%;
     --blackish: rgb(50, 50, 50);
     --whiteish: rgb(254, 253, 252);
-    --secondary-dark: #00408a;
-    --secondary: #1f74ee;
-    --primary: #ff3e9f;
-    --primary-light: #ff70c0;
-    --primary-lighter: #ffbbee;
+    --primary-darker:  hsl(var(--primary-hue), var(--primary-sat), 12%);
+    --primary-dark:    hsl(var(--primary-hue), var(--primary-sat), 36%);
+    --primary:         hsl(var(--primary-hue), var(--primary-sat), 55%);
+    --primary-light:   hsl(var(--primary-hue), var(--primary-sat), 72%);
+    --primary-lighter: hsl(var(--primary-hue), var(--primary-sat), 90%);
 
     /* Code */
-    --emerald: #2ecc71;
     --river: #3498db;
     --amethyst: #9b59b6;
-    --asphalt: #425d78;
-    --sunflower: #f1c40f;
-    --carrot: #e67e22;
-    --alizarin: #e74c3c;
-    --clouds: #ecf0f1;
-    --concrete: #95a5a6;
-    --light-turquoise: #90c0a0;
     --dark-turquoise: #3a9a90;
-    --bleak-emerald: #50c080;
     --dark-emerald: #24aa5c;
-    --dark-river: #2980b9;
     --dark-asphalt: #2c3e50;
     --dark-sunflower: #b09000;
     --dark-carrot: #d35400;
     --bleak-alizarin: #d06065;
-    --dark-alizarin: #bc3c34;
-    --dark-clouds: #bdc3c7;
-    --deep-clouds: #dce0e1;
     --dark-concrete: #7f8c8d;
 }
 
@@ -104,8 +93,9 @@ main {
     grid-column: 1 / 2;
     align-self: start;
     font-size: 1.0em;
+    font-weight: bold;
     padding: var(--common-padding);
-    background-color: var(--secondary-dark);
+    background-color: var(--primary-darker);
     color: var(--whiteish);
 }
 
@@ -168,12 +158,12 @@ p {
 }
 
 a {
-    color: var(--secondary);
+    color: var(--primary);
     text-decoration: none;
 }
 
 a:visited {
-    color: var(--secondary-dark);
+    color: var(--primary-dark);
 }
 
 a:hover {
@@ -226,7 +216,7 @@ footer {
     padding: 14px;
     padding-top: 18px;
     margin-top: 20px;
-    background-color: var(--secondary-dark);
+    background-color: var(--primary-darker);
     color: var(--whiteish);
 }
 
