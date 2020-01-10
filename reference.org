@@ -152,9 +152,14 @@ complete, but it may not be.
     #+END_SRC
 
 ** Match
-   Pattern matching. Used to deconstruct algebraic datatypes.
+   Pattern matching. Can match against literals to test for equality,
+   against constructions to deconstruct datatypes, against names to
+   bind a variable to (a substructure of) the matchee.
 
-   Note that the cases of a match-expression must be exhaustive and
+   The literal-types that can be matched against are integers, bools,
+   and strings.
+
+   The cases of a match-expression must be exhaustive and
    non-redundant.
 
    When pattern matching on an uninhabited type, no cases can be given
@@ -183,6 +188,12 @@ complete, but it may not be.
     (define: (absurd void)
         (forall (a) (Fun Void' a))
       (match void))
+
+    (define read-binop
+      (fun-match
+        (case "plus" +)
+        (case "times" *)
+        (case s (panic (str-append "Undefined binop " s)))))
     #+END_SRC
 
     #+BEGIN_SRC carth :tangle no
