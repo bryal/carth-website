@@ -162,9 +162,15 @@ figcaption {
     text-align: center;
 }
 
+* > p:first-child {
+    text-indent: 0;
+}
+
 p {
     padding: 0px calc(var(--common-padding) * 2.0);
     text-align: justify;
+    text-indent: 2em;
+    margin: 0;
 }
 
 a {
