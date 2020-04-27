@@ -19,7 +19,8 @@ Welcome to the homepage of the Carth programming language!
   - [[file:reference.org::#Literate-Carth][Native support for literate programming in Org-mode]]
 
 * Documentation
-  - [[./reference.org][The Carth Reference]]
+  - [[file:guide.org][User guide]]
+  - [[file:reference.org][Language reference]]
 
 * Development
   All development on the Carth project happens openly on [[https://github.com/bryal/carth][Github in

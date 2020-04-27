@@ -1,0 +1,24 @@
+#+TITLE: Guide
+
+This document should show how to use the Carth compiler in a guide /
+tutorial fashion.
+
+For a reference-style document that describes all the constructs of
+language, check out the [[file:reference.org][reference]].
+
+* Installation
+
+* Getting started
+
+* Writing a program
+
+* Compiling and executing
+
+* Debugging
+  Carth emits rudimentary DWARF debugging information via the LLVM
+  backend, so you can debug your programs with GDB, LLDB, etc., just
+  like programs written in C and the like.
+
+* Using libraries
+
+* Publishing a package

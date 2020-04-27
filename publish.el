@@ -25,7 +25,8 @@
                                         (format "<link href=\"%s\" rel=\"stylesheet\" type=\"text/css\" />" (concat root "css/style.css")))
                     :html-home/up-format
                     ,(concat "<a href=\"%s\"><img src='" root "img/logo_512.png' /></a>"
-                             "<a href=\"" root "reference.html\">Documentation</a>"
+                             "<a href=\"" root "guide.html\">Guide</a>"
+                             "<a href=\"" root "reference.html\">Reference</a>"
                              "<a href=\"https://github.com/bryal/carth/releases\">Releases</a>"
                              "<a href=\"https://github.com/bryal/carth\">Source</a>"
                              )
