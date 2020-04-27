@@ -124,7 +124,6 @@ complete, but it may not be.
 
 - Int :: 64-bit signed integer literal. Example: ~42~.
 - Double :: 64-bit double precision floating point literal. Example: ~-13.37~.
-- Char :: 4-byte UTF-32 Character literal. Example: ~'a'~, ~'維'~, ~'🔥'~.
 - String :: UTF-8 string literals. At the moment, generates to static
             arrays. Will likely be changed. Example: ~"Hello, World!"~, ~"😄😦🐱"~.
 - Bool :: ~True~ or ~False~.
