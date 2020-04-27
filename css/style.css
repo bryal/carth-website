@@ -2,7 +2,7 @@
     /* Misc variables */
     --toc-width: 320px;
     --common-padding: 18px;
-    --article-width: 640px;
+    --article-width: 720px;
     --shaded: rgba(0, 0, 0, 0.07);
 
     --primary-hue: 300;
@@ -41,6 +41,14 @@ header {
     align-items: center;
     margin-bottom: 1.4em;
 }
+
+h1 { font-size: 2.8em; }
+
+h2 { font-size: 2.2em; }
+
+h3 { font-size: 1.6em; }
+
+h4 { font-size: 1.2em; }
 
 #sitenav {
     height: 2.4em;
@@ -99,6 +107,8 @@ main {
     color: var(--whiteish);
 }
 
+#table-of-contents h2 { font-size: 2.0em; }
+
 #table-of-contents a {
     color: var(--primary-light);
 }
@@ -153,7 +163,7 @@ figcaption {
 }
 
 p {
-    padding: 0px var(--common-padding);
+    padding: 0px calc(var(--common-padding) * 2.0);
     text-align: justify;
 }
 
@@ -191,7 +201,7 @@ a:hover {
 }
 
 pre.src {
-    font-size: 0.9em;
+    font-size: 1.0em;
     overflow-x: auto !important;
     border: var(--primary-lighter) 2px dashed;
     padding: 6px 8px;
@@ -228,7 +238,7 @@ footer p {
     text-align: left;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1080px) {
     :root {
 	--common-padding: 12px;
     }
@@ -236,6 +246,8 @@ footer p {
     #table-of-contents {
 	padding-left: calc(var(--common-padding) + 8px);
     }
+
+    p { padding: 0px calc(var(--common-padding) * 1.8);}
 
     main {
 	display: block;
@@ -246,9 +258,15 @@ footer p {
     }
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 725px) {
     body {
-	font-size: 10px;
+	font-size: 14px;
+    }
+
+    p { padding: 0px calc(var(--common-padding) * 1.2); }
+
+    pre.src {
+	font-size: 0.8em;
     }
 }
 
