@@ -42,6 +42,28 @@ complete, but it may not be.
    Global variables are practically equivalent to local variables, in
    all respects but scope.
 
+*** Tail recursion
+    Since Carth doesn't have any builtin loop construct and rely on
+    tail recursion instead, optimizing tail calls is necessary in
+    order for very long or even infinite recursions to not filling up
+    the stack and crash. In order to make FFI with C relatively
+    trivial, Carth always conforms to the C calling convention. One
+    implication of this is that LLVM can't optimize arbitrary calls in
+    tail positions (as it can with the , but it will still perform the
+    restricted form of tail call optimization called /sibling call
+    optimization/. This means that if the following conditions are
+    true, Carth guarantees that tail calls are optimized and the stack
+    frame is reused:
+
+    - Caller and callee are of the same type.
+    - Caller and callee are not curried functions. I.e., they only
+      take one argument (which may be of any type, including a tuple).
+    - Call is in tail position.
+
+    If you notice that tail calls are not optimized (i.e. you get a
+    stack overflow / segfault) even when the above conditions are
+    true, please [[https://github.com/bryal/carth/issues][open an issue with a bug report]]!
+
 *** Examples
     #+BEGIN_SRC carth
     ;; First form. Implicitly typed variable definition.
