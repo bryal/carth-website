@@ -32,12 +32,13 @@ Welcome to the homepage of the Carth programming language!
   [[https://github.com/bryal/carth/tree/master/examples/][~examples~ directory in the repository]].
 
   #+BEGIN_SRC carth
-  ;; Note that many of these functions are/will be in the standard
-  ;; library in some shape or form. We just include them all in the same
-  ;; file here to show off more of the syntax and features.
+  ;; Note that many of these functions are/will be in the
+  ;; standard library in some shape or form. We just include
+  ;; them all in the same file here to show off more of the
+  ;; syntax and features.
 
-  ;; ~start~ is the programs entrypoint
-  (define (start _) (fizzbuzz unit))
+  ;; ~main~ is the programs entrypoint
+  (define (main _) (fizzbuzz Unit))
 
   (define (fizzbuzz _)
     (for (range 1 100)
@@ -45,10 +46,10 @@ Welcome to the homepage of the Carth programming language!
 
   (define (fizzbuzz' n)
     (match (Pair (divisible? n 3) (divisible? n 5))
-      (case (Pair false false) (my-show-int n))
-      (case (Pair true false) "Fizz")
-      (case (Pair false true) "Buzz")
-      (case (Pair true true) "Fizzbuzz")))
+      (case (Pair False False) (my-show-int n))
+      (case (Pair True False) "Fizz")
+      (case (Pair False True) "Buzz")
+      (case (Pair True True) "Fizzbuzz")))
 
   (define my-show-int
     (fun-match
@@ -59,7 +60,7 @@ Welcome to the homepage of the Carth programming language!
   ;; Apply an action to each element in an iterator
   (define (for xs f)
     (match (next xs)
-      (case None unit)
+      (case None Unit)
       (case (Some (Pair x xs'))
             (seq (f x) (for xs' f)))))
 
@@ -69,8 +70,8 @@ Welcome to the homepage of the Carth programming language!
                     (fun _ None)
                   (fun _ (Some (Pair a (range (+ a 1) b))))))))
 
-  ;; Advances an iterator, returning the next value and the rest of the
-  ;; iterator
+  ;; Advances an iterator, returning the next value and the
+  ;; rest of the iterator
   (define (next (Iter it)) (lively it))
 
   ;; An iterator / non-strict list
@@ -78,7 +79,7 @@ Welcome to the homepage of the Carth programming language!
     (Iter (Lazy (Maybe (Pair a (Iter a))))))
 
   (define (lively (Lazy f))
-    (f unit))
+    (f Unit))
 
   ;; A lazy, or rather a non-strict value
   (type (Lazy a)

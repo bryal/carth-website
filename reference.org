@@ -2,7 +2,7 @@
 
 #+BEGIN_SRC carth :exports none
 (import std)
-(define (start _) unit)
+(define (main Unit) Unit)
 #+END_SRC
 
 This document is the primary reference for the Carth programming
@@ -68,17 +68,19 @@ complete, but it may not be.
     #+BEGIN_SRC carth
     ;; First form. Implicitly typed variable definition.
     ;;
-    ;; Bind the global variable ~fst-iv~ to the function that extracts the
-    ;; first value of a pair. No explicit type signature is given - it is
-    ;; statically inferred by the typechecker to be the equivalent of
-    ;; ~(forall (a b) (Fun (Pair a b) a))~
+    ;; Bind the global variable ~fst-iv~ to the function that
+    ;; extracts the first value of a pair. No explicit type
+    ;; signature is given - it is statically inferred by the
+    ;; typechecker to be the equivalent of ~(forall (a b) (Fun
+    ;; (Pair a b) a))~
     (define fst-iv
       (fun ((Pair x _)) x))
 
     ;; Second form. Implicitly typed function definition.
     ;;
-    ;; Again, the fst function, equivalent to the defition above, but
-    ;; using the more convenient function definition syntax.
+    ;; Again, the fst function, equivalent to the defition
+    ;; above, but using the more convenient function definition
+    ;; syntax.
     (define (fst-if p)
       (match p
         (case (Pair x _) x)))
@@ -89,9 +91,9 @@ complete, but it may not be.
 
     ;; Third form. Explicitly typed variable definition.
     ;;
-    ;; Explicit type signature is given. The type must properly be a
-    ;; polytype (aka /type scheme/) to be valid and instantiable for any
-    ;; monotype.
+    ;; Explicit type signature is given. The type must properly
+    ;; be a polytype (aka /type scheme/) to be valid and
+    ;; instantiable for any monotype.
     (define: fst-ev
         (forall (a b) (Fun (Pair a b) a))
       (fun-match (case (Pair x _) x)))
@@ -119,23 +121,24 @@ complete, but it may not be.
     #+BEGIN_SRC carth
     ;; First form. Monomorphic datatype definition.
     ;;
-    ;; ~Age~ only has one variant, and as such can be seen as a "wrapper"
-    ;; around ~Int~, restricting its usage.
+    ;; ~Age~ only has one variant, and as such can be seen as a
+    ;; "wrapper" around ~Int~, restricting its usage.
     (type Age
       (Age Int))
 
     ;; Second form. Polymorphic datatype definition.
     ;;
-    ;; ~List~ has two variants, representing that a list can either be
-    ;; empty, or a pair of a head and a tail. Note that we must have a
-    ;; ~Box~ indirection so that it doesn't have infinite size.
+    ;; ~List~ has two variants, representing that a list can
+    ;; either be empty, or a pair of a head and a tail. Note
+    ;; that we must have a ~Box~ indirection so that it doesn't
+    ;; have infinite size.
     (type (List' a)
       (Cons' a (Box (List' a)))
       Nil')
 
-    ;; An uninhabited type that can't be constructed. Useful when you want
-    ;; to employ the type system to make invalid states unrepresentable,
-    ;; or model propositions as types.
+    ;; An uninhabited type that can't be constructed. Useful
+    ;; when you want to employ the type system to make invalid
+    ;; states unrepresentable, or model propositions as types.
     (type Void')
     #+END_SRC
 
@@ -200,12 +203,12 @@ complete, but it may not be.
       (Pair' a b))
 
     ;; Ok
-    (define (fst pair)
+    (define (fst' pair)
       (match pair
         (case (Pair' a _) a)))
 
-    ;; Matching on an uninhabited type corresponds to the elimination rule
-    ;; for ⊥ (it implies anything).
+    ;; Matching on an uninhabited type corresponds to the
+    ;; elimination rule for ⊥ (it implies anything).
     (define: (absurd void)
         (forall (a) (Fun Void' a))
       (match void))
@@ -218,15 +221,15 @@ complete, but it may not be.
     #+END_SRC
 
     #+BEGIN_SRC carth :tangle no
-    ;; Error. Redundant pattern. ~Pair _ _~ already covered by previous
-    ;; pattern ~_~
+    ;; Error. Redundant pattern. ~Pair _ _~ already covered by
+    ;; previous pattern ~_~
     (define (redundant pair)
       (match pair
         (case _ 1)
         (case (Pair' x y) 2)))
 
-    ;; Error. Inexhaustive pattern. All cases not covered, specifically
-    ;; ~Bar~
+    ;; Error. Inexhaustive pattern. All cases not covered,
+    ;; specifically ~Bar~
     (define (inexhaustive foo)
       (match foo
         (case Baz 123)))
@@ -241,7 +244,8 @@ complete, but it may not be.
 
 *** Example
     #+BEGIN_SRC carth
-    ;; Two versions of `fst`, which returns the first value of a pair
+    ;; Two versions of `fst`, which returns the first value of a
+    ;; pair
     ;;
     ;; using normal `match`
     (define (fst-nofun p)
@@ -274,9 +278,10 @@ complete, but it may not be.
         UnitOrPair
       UPUnit)
 
-    ;; The ~UPPair~ constructor is binary, and takes two arguments to
-    ;; construct a ~UnitOrPair~. It behaves like a function of two ~Int~
-    ;; arguments, returning a ~UnitOrPair~.
+    ;; The ~UPPair~ constructor is binary, and takes two
+    ;; arguments to construct a ~UnitOrPair~. It behaves like a
+    ;; function of two ~Int~ arguments, returning a
+    ;; ~UnitOrPair~.
     (define: uppair''
         (Fun Int Int UnitOrPair)
       UPPair)
@@ -324,8 +329,8 @@ complete, but it may not be.
 
    Literate programming is just really cool!
 
-   ~carth~ will assume ~tangle~ = ~yes~ by default, but setting it
-   explicitly won't hurt.
+   ~carth~ will assume ~tangle~ = ~yes~ by default, but setting
+   it explicitly won't hurt.
 
    ,#+BEGIN_SRC carth :tangle yes
    (define (main _)
@@ -333,16 +338,18 @@ complete, but it may not be.
    ,#+END_SRC
 
    ,* The ~id~ function
-     ~id~ is the identity function. It returns its argument unchanged.
+     ~id~ is the identity function. It returns its argument
+     unchanged.
 
      ,#+BEGIN_SRC carth
      (define (id x) x)
      ,#+END_SRC
 
    ,* How not to use ~id~
-     Here is an example of how not to use ~id~. Note that this won't
-     compile. We show this in a SRC block to get syntax highlighting etc,
-     but as ~tangle~ is ~no~, this source block will be ignored by carth.
+     Here is an example of how not to use ~id~. Note that this
+     won't compile. We show this in a SRC block to get syntax
+     highlighting etc, but as ~tangle~ is ~no~, this source
+     block will be ignored by carth.
 
      ,#+BEGIN_SRC carth :tangle no
      (printInt id)
