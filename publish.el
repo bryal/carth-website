@@ -30,7 +30,7 @@
                              "<a href=\"https://github.com/bryal/carth/releases\">Releases</a>"
                              "<a href=\"https://github.com/bryal/carth\">Source</a>"
                              )
-                    :html-postamble "<p class=\"author\">Author: %a (%e)</p><p class=\"date\">Last updated: %T</p><p class=\"creator\">%c</p>"
+                    :html-postamble "<p class=\"author\">Author: %a (%e)</p><p class=\"date\">Last updated: %C</p><p class=\"creator\">%c</p>"
                     :html-link-home ,root
                     ))))
   (setq org-publish-project-alist
