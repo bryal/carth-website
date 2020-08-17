@@ -10,23 +10,23 @@ language. It is updated on a best-effort basis. It should be valid and
 complete, but it may not be.
 
 * TODO Introduction
-** TODO How to use this document
+# ** TODO How to use this document
 
 ** TODO Contributing
    [[https://github.com/bryal/carth-website/tree/master/reference.org][Here is this file in the github repository]].
 
-** TODO Influences
+# ** TODO Influences
 
-** TODO Glossary
+# ** TODO Glossary
 
 * TODO Lexical structure
   For details about the syntax that are not covered explicitly in this
   document or cannot be inferred from the provided examples, please
   consult the source of the parser directly in [[https://github.com/bryal/carth/blob/master/src/Parse.hs][Parse.hs]].
 
-* TODO Macros
+# * TODO Macros
 
-* TODO Packages, modules, and source files
+# * TODO Packages, modules, and source files
 
 * TODO Items
 ** Global variable definitions
@@ -152,13 +152,13 @@ complete, but it may not be.
 - String :: UTF-8 string literals. At the moment, generates to static
             arrays. Will likely be changed. Example: ~"Hello, World!"~, ~"😄😦🐱"~.
 - Bool :: ~True~ or ~False~.
-** TODO Variable
+# ** TODO Variable
 
-** TODO Function application
+# ** TODO Function application
 
-** TODO Conditional
+# ** TODO Conditional
 
-** TODO Anonymous-function / Lambda expression / Closure
+# ** TODO Anonymous-function / Lambda expression / Closure
 
 ** TODO Let
 
@@ -301,17 +301,17 @@ complete, but it may not be.
 
 ** Example
    See [[#Match-Example][Match/Example]].
-* TODO Type system
+# * TODO Type system
 
-* TODO Memory model
+# * TODO Memory model
 
-* TODO Linkage
+# * TODO Linkage
 
-* TODO Unsafety
+# * TODO Unsafety
 
-* TODO Compile time evaluation
+# * TODO Compile time evaluation
 
-* TODO Runtime
+# * TODO Runtime
 * TODO Literate Carth
   :PROPERTIES:
   :CUSTOM_ID: Literate-Carth
