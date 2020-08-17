@@ -10,8 +10,8 @@
     --blackish: rgb(50, 50, 50);
     --whiteish: rgb(254, 253, 252);
     --primary-darker:  hsl(var(--primary-hue), var(--primary-sat), 12%);
-    --primary-dark:    hsl(var(--primary-hue), var(--primary-sat), 36%);
-    --primary:         hsl(var(--primary-hue), var(--primary-sat), 55%);
+    --primary-dark:    hsl(var(--primary-hue), var(--primary-sat), 35%);
+    --primary:         hsl(var(--primary-hue), var(--primary-sat), 50%);
     --primary-light:   hsl(var(--primary-hue), var(--primary-sat), 72%);
     --primary-lighter: hsl(var(--primary-hue), var(--primary-sat), 90%);
 
