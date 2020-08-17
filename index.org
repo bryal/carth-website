@@ -121,6 +121,9 @@ Welcome to the homepage of the Carth programming language!
   (extern -str-append (Fun (Pair Str Str) Str))
   #+END_SRC
 
+* Related work
+  - [[https://github.com/ChickenProp/haskenthetical][Haskenthetical]]
+  - [[https://lexi-lambda.github.io/hackett/][Hackett]]
 * License
   Both the Carth project and this website itself are licensed under
   the AGPL, version 3 or later. See [[./LICENSE][LICENSE]].
