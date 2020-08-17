@@ -22,7 +22,9 @@
                     :exclude-tags ("noexport")
 
                     :html-head ,(concat (format "<link rel=\"shortcut icon\" href=\"%s\"/>" (concat root "img/logo_128.png"))
-                                        (format "<link href=\"%s\" rel=\"stylesheet\" type=\"text/css\" />" (concat root "css/style.css")))
+                                        (format "<link href=\"%s\" rel=\"stylesheet\" type=\"text/css\" />" (concat root "css/style.css"))
+                                        (format "<link href=\"%s\" rel=\"stylesheet\" type=\"text/css\" />" (concat root "css/font-Alegreya.css"))
+                                        (format "<link href=\"%s\" rel=\"stylesheet\" type=\"text/css\" />" (concat root "css/font-Iosevka.css")))
                     :html-home/up-format
                     ,(concat "<a href=\"%s\"><img src='" root "img/logo_512.png' alt='Carth logo' title='Home'/></a>"
                              "<a href=\"" root "guide.html\">Guide</a>"

@@ -1,25 +1,21 @@
 header {
-    margin-bottom: 4em;
+    margin-bottom: 3em;
 }
 
 header .title {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 3.0em;
-    margin-top: 1.8em;
+    font-size: 2.8em;
+    margin-top: 1.0em;
 }
 
 header .title:before {
     content: "";
     background: url("../img/logo_1024.png");
     background-size: cover;
-    height: 5em;
-    width: 5em;
+    height: 4.5em;
+    width: 4.5em;
     display: block;
-    margin-bottom: 0.4em;
-}
-
-#sitenav a:first-child {
-    display: none;
+    margin-bottom: 0.2em;
 }
