@@ -1,90 +1,60 @@
 @font-face {
     font-family: Iosevka; font-display: swap;
-    font-weight: 100; font-style: normal;
-    src: url('/fonts/Iosevka/iosevka-ss09-thin.ttf');
-}
-@font-face {
-    font-family: Iosevka; font-display: swap;
-    font-weight: 100; font-style: italic;
-    src: url('/fonts/Iosevka/iosevka-ss09-thinitalic.ttf');
-}
-@font-face {
-    font-family: Iosevka; font-display: swap;
     font-weight: 200; font-style: normal;
-    src: url('/fonts/Iosevka/iosevka-ss09-extralight.ttf');
+    src: url('/fonts/Iosevka/iosevka-ss09-extralight.woff2');
 }
 @font-face {
     font-family: Iosevka; font-display: swap;
     font-weight: 200; font-style: italic;
-    src: url('/fonts/Iosevka/iosevka-ss09-extralightitalic.ttf');
+    src: url('/fonts/Iosevka/iosevka-ss09-extralightitalic.woff2');
 }
 @font-face {
     font-family: Iosevka; font-display: swap;
     font-weight: 300; font-style: normal;
-    src: url('/fonts/Iosevka/iosevka-ss09-light.ttf');
+    src: url('/fonts/Iosevka/iosevka-ss09-light.woff2');
 }
 @font-face {
     font-family: Iosevka; font-display: swap;
     font-weight: 300; font-style: italic;
-    src: url('/fonts/Iosevka/iosevka-ss09-lightitalic.ttf');
+    src: url('/fonts/Iosevka/iosevka-ss09-lightitalic.woff2');
 }
 @font-face {
     font-family: Iosevka; font-display: swap;
     font-weight: 400; font-style: normal;
-    src: url('/fonts/Iosevka/iosevka-ss09-regular.ttf');
+    src: url('/fonts/Iosevka/iosevka-ss09-regular.woff2');
 }
 @font-face {
     font-family: Iosevka; font-display: swap;
     font-weight: 400; font-style: italic;
-    src: url('/fonts/Iosevka/iosevka-ss09-italic.ttf');
+    src: url('/fonts/Iosevka/iosevka-ss09-italic.woff2');
 }
 @font-face {
     font-family: Iosevka; font-display: swap;
     font-weight: 500; font-style: normal;
-    src: url('/fonts/Iosevka/iosevka-ss09-medium.ttf');
+    src: url('/fonts/Iosevka/iosevka-ss09-medium.woff2');
 }
 @font-face {
     font-family: Iosevka; font-display: swap;
     font-weight: 500; font-style: italic;
-    src: url('/fonts/Iosevka/iosevka-ss09-mediumitalic.ttf');
-}
-@font-face {
-    font-family: Iosevka; font-display: swap;
-    font-weight: 600; font-style: normal;
-    src: url('/fonts/Iosevka/iosevka-ss09-semibold.ttf');
-}
-@font-face {
-    font-family: Iosevka; font-display: swap;
-    font-weight: 600; font-style: italic;
-    src: url('/fonts/Iosevka/iosevka-ss09-semibolditalic.ttf');
+    src: url('/fonts/Iosevka/iosevka-ss09-mediumitalic.woff2');
 }
 @font-face {
     font-family: Iosevka; font-display: swap;
     font-weight: 700; font-style: normal;
-    src: url('/fonts/Iosevka/iosevka-ss09-bold.ttf');
+    src: url('/fonts/Iosevka/iosevka-ss09-bold.woff2');
 }
 @font-face {
     font-family: Iosevka; font-display: swap;
     font-weight: 700; font-style: italic;
-    src: url('/fonts/Iosevka/iosevka-ss09-bolditalic.ttf');
-}
-@font-face {
-    font-family: Iosevka; font-display: swap;
-    font-weight: 800; font-style: normal;
-    src: url('/fonts/Iosevka/iosevka-ss09-extrabold.ttf');
-}
-@font-face {
-    font-family: Iosevka; font-display: swap;
-    font-weight: 800; font-style: italic;
-    src: url('/fonts/Iosevka/iosevka-ss09-extrabolditalic.ttf');
+    src: url('/fonts/Iosevka/iosevka-ss09-bolditalic.woff2');
 }
 @font-face {
     font-family: Iosevka; font-display: swap;
     font-weight: 900; font-style: normal;
-    src: url('/fonts/Iosevka/iosevka-ss09-heavy.ttf');
+    src: url('/fonts/Iosevka/iosevka-ss09-heavy.woff2');
 }
 @font-face {
     font-family: Iosevka; font-display: swap;
     font-weight: 900; font-style: italic;
-    src: url('/fonts/Iosevka/iosevka-ss09-heavyitalic.ttf');
+    src: url('/fonts/Iosevka/iosevka-ss09-heavyitalic.woff2');
 }
