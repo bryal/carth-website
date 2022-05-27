@@ -171,6 +171,7 @@ header {
 
 #sitenav a:first-child img {
     height: 2.2em;
+    width: 2.2em;
 }
 
 #sitenav a {
@@ -245,7 +246,7 @@ pre.src .org-warning { color: var(--code-saturated-orange); }
     }
     body {
 	font-size: 20px;
-	grid-template-columns: [full-start] 320px [center-start] auto [center-end full-end];
+	grid-template-columns: [full-start] 320px [toc-end center-start] auto [center-end full-end];
     }
     main { justify-self: start; }
 }
