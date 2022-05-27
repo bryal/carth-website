@@ -7,31 +7,39 @@
 #+HTML_HEAD: <link href="/css/font-Alegreya.css" rel="stylesheet" type="text/css" />
 #+HTML_HEAD: <link href="/css/font-Iosevka.css" rel="stylesheet" type="text/css" />
 
-Welcome to the homepage of the Carth programming language!
+Welcome to the homepage of the Carth -- a work-in-progress programming
+language with no great ambitions. It just wants to sit comfortably
+between Rust, Haskell, and Scheme, and to become the go-to language
+for its creator -- me!
 
-* /WORK IN PROGRESS/
-  Just as a little disclaimer: this project is in the very early
-  stages of development, so there are no guarantees of stability etc.
+Although having existed for some years now, Carth is still in fairly
+early stages of development. The author has managed to do Advent of
+Code in it, but that's about as useful as it can be right now. There
+are no guarantees of stability, so if you do decide to try the
+language out -- please beware that the whole building may at any point
+flip upside down right under your nose.
+
+Also, I don't really keep this site up-to-date at all yet, so don't
+trust anything or anyone you encounter here!
 
 * Why Carth?
-  - Scheme-inspired syntax and feel
-  - Static, Hindley-Milner typechecking à la ML
-  - Currying
-  - LLVM-based backend
-  - [[file:reference.org::#Literate-Carth][Native support for literate programming in Org-mode]]
+- Scheme-inspired syntax and feel
+- Static, Hindley-Milner typechecking à la ML
+- Native compilation (with LLVM for now, but that is probably about to change!)
+- [[file:reference.org::#Literate-Carth][Support for literate programming in Org-mode]]
 
 * Documentation
   - [[file:guide.org][User guide]]
   - [[file:reference.org][Language reference]]
 
 * Development
-  All development on the Carth project happens openly on [[https://github.com/bryal/carth][Github in
-  ~bryal/carth~]]. The source for this website is also on [[https://github.com/bryal/carth-website][Github in
+  All development on the Carth project happens openly on [[https://sr.ht/~jojo/carth][Sourcehut in
+  =~jojo/carth=]]. The source for this website is also on [[https://github.com/bryal/carth-website][Github in
   ~bryal/carth-website~]].
 
 * Example
   Just to give you a quick taste. More examples can be found in the
-  [[https://github.com/bryal/carth/tree/master/examples/][~examples~ directory in the repository]].
+  [[https://git.sr.ht/~jojo/Carth/tree/master/item/examples][~examples~ directory]].
 
   #+BEGIN_SRC carth
   (import std)
@@ -59,29 +67,3 @@ Welcome to the homepage of the Carth programming language!
 * Related work
   - [[https://github.com/ChickenProp/haskenthetical][Haskenthetical]]
   - [[https://lexi-lambda.github.io/hackett/][Hackett]]
-* License
-  Both the Carth project and this website itself are licensed under
-  the AGPL, version 3 or later. See [[./LICENSE][LICENSE]].
-
-  Note that by default, all programs written in Carth will have to be
-  distributed under the AGPLv3 license as well, as not just the
-  compiler itself, but also the standard library you include and the
-  core library you link with are AGPLv3 licensed. Technically you
-  could write your own standard library and core library with some
-  non-copyleft license to avoid this, but I hope you won't! ;)
-
-** Notice
-   Copyright (C) 2020  Johan Johansson
-
-   This program is free software: you can redistribute it and/or
-   modify it under the terms of the GNU Affero General Public License as
-   published by the Free Software Foundation, either version 3 of the
-   License, or (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful, but
-   WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Affero General Public License for more details.
-
-   You should have received a copy of the GNU Affero General Public License
-   along with this program.  If not, see <https://www.gnu.org/licenses/>.

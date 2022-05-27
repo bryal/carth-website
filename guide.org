@@ -15,9 +15,6 @@ language, check out the [[file:reference.org][reference]].
 * Compiling and executing
 
 * Debugging
-  Carth emits rudimentary DWARF debugging information via the LLVM
-  backend, so you can debug your programs with GDB, LLDB, etc., just
-  like programs written in C and the like.
 
 * Using libraries
 
